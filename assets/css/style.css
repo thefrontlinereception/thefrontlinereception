@@ -181,3 +181,16 @@ header .topbar {
   object-fit: contain;
   display: block;
 }
+
+/* Remove old square background on logo */
+.brand-logo {
+  background: none !important;   /* remove gradient or color fill */
+  box-shadow: none !important;   /* remove any shadows */
+  border-radius: 0 !important;   /* no rounded box */
+  padding: 0 !important;         /* no extra padding */
+  margin: 0;                     /* reset margin */
+  display: block;
+  height: 48px;                  /* or whatever size you like */
+  width: auto;                   /* keeps proportions */
+  object-fit: contain;
+}
