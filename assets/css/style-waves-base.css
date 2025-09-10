@@ -116,3 +116,27 @@ header .topbar {
   width: min(1100px, 92%);
   margin: 0 auto;
 }
+
+/* FINAL override: make logo bigger & remove square box */
+header .brand-logo,
+footer .brand-logo,
+.brand .brand-logo,
+img.brand-logo {
+  height: 80px !important;   /* pick your size */
+  width: auto !important;
+  background: none !important;
+  box-shadow: none !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  object-fit: contain !important;
+  display: block !important;
+}
+
+/* Give the header room for the taller logo */
+header .topbar { padding: 22px 0 !important; }
+
+/* Optional: smaller on phones */
+@media (max-width: 600px) {
+  header .brand-logo { height: 56px !important; }
+  header .topbar { padding: 16px 0 !important; }
+}
