@@ -194,3 +194,16 @@ header .topbar {
   width: auto;                   /* keeps proportions */
   object-fit: contain;
 }
+
+/* Force remove the old square box */
+img.brand-logo {
+  background: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  display: inline-block !important;
+  height: 48px;   /* adjust as you want */
+  width: auto !important;
+  object-fit: contain;
+}
