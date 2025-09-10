@@ -174,3 +174,10 @@ header .topbar {
 }
 
 .hero .badge { display: none !important; }
+/* Consistent logo sizing (header + footer) */
+.brand-logo {
+  height: 48px;       /* adjust to your preferred size */
+  width: auto;        /* keeps it wider, not square */
+  object-fit: contain;
+  display: block;
+}
