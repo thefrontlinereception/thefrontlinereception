@@ -1,0 +1,26 @@
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400" preserveAspectRatio="none">
+  <defs>
+    <linearGradient id="grad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#e8f0ff"/>
+      <stop offset="100%" stop-color="#f6fbff"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="400" fill="url(#grad)"/>
+  <g fill="#e2ecff" opacity="0.8">
+    <path>
+      <animate attributeName="d" dur="12s" repeatCount="indefinite"
+        values="M0,280 C300,320 900,200 1200,260 L1200,400 L0,400 Z;
+                M0,300 C300,240 900,320 1200,260 L1200,400 L0,400 Z;
+                M0,280 C300,320 900,200 1200,260 L1200,400 L0,400 Z"/>
+    </path>
+  </g>
+  <g fill="#d7e6ff" opacity="0.9">
+    <path>
+      <animate attributeName="d" dur="14s" repeatCount="indefinite"
+        values="M0,260 C400,300 800,180 1200,230 L1200,400 L0,400 Z;
+                M0,240 C400,200 800,260 1200,210 L1200,400 L0,400 Z;
+                M0,260 C400,300 800,180 1200,230 L1200,400 L0,400 Z"/>
+    </path>
+  </g>
+</svg>

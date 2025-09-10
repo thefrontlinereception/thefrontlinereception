@@ -1,0 +1,65 @@
+
+/* === Option B: Animated SVG Waves (hero only) === */
+.hero {
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  background: #f7fbff;
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url('../svg/waves.svg') no-repeat center bottom;
+  background-size: cover;
+  opacity: 1;
+  z-index: -1;
+}
+
+
+/* === Global Background Image & Readability Overlay (enforced) === */
+:root { --page-overlay: rgba(255,255,255,0.62); } /* tweak 0.55–0.75 */
+
+html, body {
+  background-color: var(--bg, #f4f6f8) !important;
+  background-image: url('../img/background-office.png') !important;
+  background-repeat: no-repeat !important;
+  background-position: center center !important;
+  background-size: cover !important;
+  background-attachment: fixed;
+  min-height: 100%;
+}
+
+/* page-wide overlay: sits above image, below all content */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: var(--page-overlay);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ensure content renders above overlay */
+body > * { position: relative; z-index: 1; }
+
+/* extra clarity for hero text on photography */
+.hero .title, .hero .subtitle { text-shadow: 0 2px 4px rgba(0,0,0,0.22); }
+
+
+/* === Full-width sticky header (banner) === */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+  background: rgba(255,255,255,0.92);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border, #e5e7eb);
+}
+/* Keep inner bar centered and constrained */
+header .topbar {
+  width: min(1100px, 92%);
+  margin: 0 auto;
+}
