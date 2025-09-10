@@ -128,7 +128,7 @@ header .topbar {
 /* === Tweaks per your notes === */
 
 /* (1) Brand area bigger */
-.brand .brand-logo { width: 48px; height: 48px; border-radius: 12px; }
+.brand .brand-logo { height: 48px; width: auto; border-radius: 0; }
 .brand { font-size: 1.25rem; font-weight: 800; }
 
 /* (2) Remove the small badge under the header */
