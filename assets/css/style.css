@@ -276,3 +276,9 @@ header .topbar {
 /* Make the big line comfy on photo */
 .hero--on-photo .title { font-weight: 800; letter-spacing: .2px; }
 .hero--on-photo .subtitle { font-weight: 600; max-width: 80ch; }
+
+/* Hero sits directly on the photo */
+.hero--on-photo {
+  padding: clamp(120px, 22vh, 200px) 0 40px; /* tall top area */
+  background: none !important;
+}
