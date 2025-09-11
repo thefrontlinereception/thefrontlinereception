@@ -282,3 +282,8 @@ header .topbar {
   padding: clamp(120px, 22vh, 200px) 0 40px; /* tall top area */
   background: none !important;
 }
+
+/* More breathing room before Services */
+.hero--on-photo {
+  padding: clamp(200px, 35vh, 340px) 0 100px !important;
+}
