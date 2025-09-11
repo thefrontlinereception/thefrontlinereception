@@ -252,3 +252,27 @@ header .topbar {
   background: transparent !important;   /* kill the old white bar */
   border-bottom: 0 !important;
 }
+
+/* --- Hero on photo (no box) --- */
+.hero--on-photo {
+  padding: clamp(120px, 22vh, 200px) 0 40px; /* tall top area */
+  background: none !important;               /* no panel behind */
+}
+
+/* Default: white text for readability on photo */
+.hero--on-photo .title,
+.hero--on-photo .subtitle {
+  color: #ffffff;
+  text-shadow: 0 4px 18px rgba(0,0,0,0.45); /* glow for legibility */
+}
+
+/* Optional red version: add .hero--red to the section */
+.hero--on-photo.hero--red .title,
+.hero--on-photo.hero--red .subtitle {
+  color: #e11d48; /* red */
+  text-shadow: 0 3px 12px rgba(0,0,0,0.35);
+}
+
+/* Make the big line comfy on photo */
+.hero--on-photo .title { font-weight: 800; letter-spacing: .2px; }
+.hero--on-photo .subtitle { font-weight: 600; max-width: 80ch; }
