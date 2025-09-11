@@ -153,3 +153,11 @@ header .topbar {
   background: transparent !important;   /* kill the old white bar */
   border-bottom: 0 !important;
 }
+
+/* Change nav hover + active highlight to brown */
+.nav a.active,
+.nav a:hover {
+  background: #4C1F00 !important;
+  color: #ffffff !important;       /* make text white for contrast */
+  border-radius: 6px;
+}
