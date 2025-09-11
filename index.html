@@ -3,15 +3,60 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Dedicated in-house support · FrontlineReception</title>
-<meta name="description" content="We answer your phones and manage admin so you can focus on growth.">
-<meta property="og:title" content="Dedicated in-house support · FrontlineReception">
-<meta property="og:description" content="We answer your phones and manage admin so you can focus on growth.">
+<title>FrontlineReception · Dedicated in-house support</title>
+<meta name="description" content="We answer your phones, manage email & admin, and feel like your own in-house team.">
+<meta property="og:title" content="FrontlineReception · Dedicated in-house support">
+<meta property="og:description" content="We answer your phones, manage email & admin, and feel like your own in-house team.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="assets/img/og-placeholder.png">
 <link rel="icon" href="assets/img/og-placeholder.png">
 <link rel="stylesheet" href="assets/css/style.css">
-<script defer src="assets/js/main.js"></script>
+
+<!-- One-page helpers -->
+<style>
+  /* Smooth scroll and offset so headings don't hide under the sticky header */
+  html { scroll-behavior: smooth; }
+  :root { --header-offset: 92px; }           /* adjust if your header height changes */
+  section[id] { scroll-margin-top: var(--header-offset); }
+
+  /* Full-width hero padding on single page */
+  .hero { padding: 56px 0 18px; }
+
+  /* Simple active state while scrolling (JS will add .active) */
+  .nav a.active { background: var(--accent-weak); text-decoration: none; }
+
+  /* Footer trimmed for one-page */
+  .footer .cols { grid-template-columns: 1fr 1fr; }
+  @media (max-width: 700px){ .footer .cols { grid-template-columns: 1fr; } }
+</style>
+
+<script defer>
+  // Mobile nav toggle (uses your same button)
+  function toggleNav(){ document.querySelector('.nav').classList.toggle('open'); }
+  // Make nav links close the mobile menu when clicked
+  document.addEventListener('click', e => {
+    if (e.target.matches('.nav a')) document.querySelector('.nav').classList.remove('open');
+  });
+  // Highlight current section link on scroll
+  document.addEventListener('DOMContentLoaded', () => {
+    const links = [...document.querySelectorAll('.nav a[href^="#"]')];
+    const map = new Map(links.map(a => [a.getAttribute('href'), a]));
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const id = `#${entry.target.id}`;
+        const link = map.get(id);
+        if (!link) return;
+        if (entry.isIntersecting) {
+          links.forEach(l => l.classList.remove('active'));
+          link.classList.add('active');
+        }
+      });
+    }, { rootMargin: `-${parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-offset'))}px 0px -60% 0px`, threshold: 0.01 });
+    document.querySelectorAll('section[id]').forEach(s => obs.observe(s));
+  });
+</script>
+
+<!-- JSON-LD -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -24,30 +69,21 @@
   "description": "Dedicated in-house support for your customers"
 }
 </script>
-
-<!-- Small, page-specific polish -->
-<style>
-  /* Header logo sizing */
-  .brand-logo { height: 48px; width: auto; border-radius: 0; background: none; }
-
-  /* Hero tweaks per your request */
-  .hero .title { font-size: clamp(26px, 3.6vw, 46px); line-height: 1.15; }
-  .hero .subtitle { font-size: clamp(18px, 2.4vw, 22px); color: #0f172a; font-weight: 500; line-height: 1.45; text-shadow: 0 2px 4px rgba(0,0,0,.18); }
-</style>
 </head>
 <body>
+
 <header>
   <div class="container topbar">
     <div class="brand">
-      <img src="assets/img/logo.png" alt="FrontlineReception Logo" class="brand-logo" />
+      <img src="assets/img/logo.png" alt="FrontlineReception Logo" class="brand-logo">
     </div>
     <nav class="nav">
-      <a href="index.html">Home</a>
-      <a href="services.html">Services</a>
-      <a href="pricing.html">Pricing</a>
-      <a href="testimonials.html">Testimonials</a>
-      <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
+      <a href="#home" class="active">Home</a>
+      <a href="#services">Services</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#testimonials">Testimonials</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
     </nav>
     <button class="mobile-toggle" onclick="toggleNav()">Menu ▾</button>
   </div>
@@ -55,51 +91,158 @@
 
 <main class="container">
 
-  <section class="hero">
-    <!-- Removed the badge on purpose -->
+  <!-- HOME -->
+  <section id="home" class="hero">
     <h1 class="title">A dedicated, trained team that feels like your own staff</h1>
     <p class="subtitle">We field your calls and emails. We handle customer service and bill pay, and we take care of admin.</p>
   </section>
 
-  <section class="section grid cards">
-    <div class="card">
-      <div class="kicker">Phones & Email</div>
-      <h3>Professional call and inbox management</h3>
-      <p>Every interaction handled with promptness, warmth, and brand-level professionalism. Your customers always feel heard and helped.</p>
-      <ul class="check">
-        <li>Live call answering & routing</li>
-        <li>Ticketing & follow-ups logged</li>
-        <li>Bilingual reps (English & Yiddish)</li>
-      </ul>
-    </div>
-    <div class="card">
-      <div class="kicker">Financial Admin</div>
-      <h3>Bill-pay & invoicing support</h3>
-      <p>We help streamline cash flow—issuing invoices, tracking payments, and paying bills on time with clear record-keeping.</p>
-    </div>
-    <div class="card">
-      <div class="kicker">General Office</div>
-      <h3>Scheduling & back-office tasks</h3>
-      <p>Data entry, CRM hygiene, calendar scheduling, and more—handled daily so your core team can stay strategic.</p>
+  <!-- SERVICES -->
+  <section id="services" class="section">
+    <h2>Services</h2>
+    <div class="grid cards">
+      <div class="card">
+        <div class="kicker">Phones & Email</div>
+        <h3>Professional call and inbox management</h3>
+        <p>Every interaction handled with promptness, warmth, and brand-level professionalism. Your customers always feel heard and helped.</p>
+        <ul class="check">
+          <li>Live call answering & routing</li>
+          <li>Ticketing & follow-ups logged</li>
+          <li>Bilingual reps (English & Yiddish)</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="kicker">Financial Admin</div>
+        <h3>Bill-pay & invoicing support</h3>
+        <p>We help streamline cash flow—issuing invoices, tracking payments, and paying bills on time with clear record-keeping.</p>
+      </div>
+      <div class="card">
+        <div class="kicker">General Office</div>
+        <h3>Scheduling & back-office tasks</h3>
+        <p>Data entry, CRM hygiene, calendar scheduling, and more—handled daily so your core team can stay strategic.</p>
+      </div>
     </div>
   </section>
 
-  <section class="section grid cards">
-    <div class="card">
-      <div class="kicker">The 3 R's</div>
-      <h3>Responsible · Respectful · Resourceful</h3>
-      <p>Our in-house training embeds ownership, professionalism, and proactive problem-solving into every client touchpoint.</p>
+  <!-- PRICING -->
+  <section id="pricing" class="section">
+    <h2>Pricing</h2>
+    <p class="note">Transparent, weekly pricing for dedicated support. Scale up or down as needed.</p>
+    <div class="pricing">
+      <div class="card">
+        <h3>Starter</h3>
+        <div class="price">$349<span style="font-size:16px;">/wk</span></div>
+        <p class="note">Ideal for solopreneurs and micro-teams.</p>
+        <ul class="check">
+          <li>Up to 20 calls/day</li>
+          <li>Shared inbox triage</li>
+          <li>Basic scheduling</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Growth</h3>
+        <div class="price">$599<span style="font-size:16px;">/wk</span></div>
+        <p class="note">Best for small businesses with steady volume.</p>
+        <ul class="check">
+          <li>Up to 50 calls/day</li>
+          <li>Inbox + ticketing workflow</li>
+          <li>Bill-pay & invoicing support</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Custom</h3>
+        <div class="price">Let’s talk</div>
+        <p class="note">Dedicated pods, bilingual coverage, extended hours.</p>
+        <ul class="check">
+          <li>Tailored SLAs & reporting</li>
+          <li>Tooling integration</li>
+          <li>Onboarding & scripts</li>
+        </ul>
+      </div>
     </div>
-    <div class="card">
-      <div class="kicker">Cost Efficiency</div>
-      <h3>No extra overhead</h3>
-      <p>All the benefits of a trained team—without desk space, hardware purchases, or payroll taxes.</p>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="testimonials" class="section">
+    <h2>Testimonials</h2>
+    <div class="grid cards">
+      <div class="card">
+        <h3>“They feel like our own front desk.”</h3>
+        <p class="note">“Customer response times improved immediately and our team reclaimed hours each week.”</p>
+        <p>— Sarah L., Medical Office</p>
+      </div>
+      <div class="card">
+        <h3>“Billing is finally smooth.”</h3>
+        <p class="note">“Invoices go out on time, payments are tracked, and cash flow is healthier.”</p>
+        <p>— Daniel R., Home Services</p>
+      </div>
+      <div class="card">
+        <h3>“Bilingual support was the unlock.”</h3>
+        <p class="note">“English & Yiddish coverage helped us serve more clients with confidence.”</p>
+        <p>— Malky U., Retail</p>
+      </div>
     </div>
-    <div class="card">
-      <div class="kicker">Seamless Fit</div>
-      <h3>Feels like your own office</h3>
-      <p>We assign dedicated in-office employees who deeply learn your processes and tools.</p>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="section">
+    <h2>About</h2>
+    <p>FrontlineReception was founded on a simple idea: great customer service should feel personal, not outsourced. Our team works in-office, learns your processes, and becomes a seamless extension of your brand.</p>
+    <div class="grid cards">
+      <div class="card">
+        <h3>Our Principles: The 3 R's</h3>
+        <ul class="check">
+          <li><strong>Responsible</strong> — We take ownership and follow through.</li>
+          <li><strong>Respectful</strong> — We treat everyone with professionalism.</li>
+          <li><strong>Resourceful</strong> — We find solutions and assist thoroughly.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Why in-house?</h3>
+        <p>Consistency, accountability, and culture fit. You’ll know your support team by name, and they’ll know your customers.</p>
+      </div>
     </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="section">
+    <h2>Contact</h2>
+    <p>Tell us about your needs and we’ll tailor a plan for you. Prefer email? Write us at
+      <a href="mailto:info@frontlinereception.com">info@frontlinereception.com</a>.
+    </p>
+
+    <form class="form" method="POST" action="https://formsubmit.co/REPLACE_WITH_YOUR_EMAIL">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_subject" value="New inquiry from FrontlineReception website">
+      <div class="row">
+        <div>
+          <label>Your Name</label>
+          <input name="name" placeholder="Full name" required>
+        </div>
+        <div>
+          <label>Company</label>
+          <input name="company" placeholder="Company name">
+        </div>
+      </div>
+      <div class="row">
+        <div>
+          <label>Email</label>
+          <input type="email" name="email" placeholder="you@company.com" required>
+        </div>
+        <div>
+          <label>Phone</label>
+          <input name="phone" placeholder="+1 (___) ___-____">
+        </div>
+      </div>
+      <div>
+        <label>How can we help?</label>
+        <textarea name="message" rows="6" placeholder="Tell us about your call volume, inbox needs, billing, scheduling, etc." required></textarea>
+      </div>
+      <div>
+        <button class="btn" type="submit">Send message</button>
+      </div>
+      <p class="note">Replace the <code>action</code> address above with your email to receive submissions.</p>
+    </form>
   </section>
 
 </main>
@@ -107,35 +250,22 @@
 <footer class="footer">
   <div class="container">
     <div class="cols">
-      <div>
-        <div class="brand hpair">
-          <img src="assets/img/logo.png" alt="FrontlineReception Logo" class="brand-logo" />
-          <div>FrontlineReception</div>
-        </div>
-        <p class="note">Dedicated in-house support for your customers</p>
-        <p class="note">English & Yiddish speaking team • Serving the whole tristate area</p>
+      <div class="brand hpair">
+        <img src="assets/img/logo.png" alt="FrontlineReception Logo" class="brand-logo">
+        <div>FrontlineReception</div>
       </div>
       <div>
         <h4>Contact</h4>
         <p class="note">
           <a href="tel:+19177539554">(917) 753-9554</a><br>
-          <a href="mailto:info@frontlinereception.com">info@frontlinereception.com</a>
-        </p>
-      </div>
-      <div>
-        <h4>Pages</h4>
-        <p class="note">
-          <a href="services.html">Services</a> ·
-          <a href="pricing.html">Pricing</a> ·
-          <a href="testimonials.html">Testimonials</a> ·
-          <a href="about.html">About</a> ·
-          <a href="contact.html">Contact</a> ·
-          <a href="privacy.html">Privacy</a>
+          <a href="mailto:info@frontlinereception.com">info@frontlinereception.com</a><br>
+          Brooklyn, NY
         </p>
       </div>
     </div>
     <p class="note" style="margin-top:18px;">© FrontlineReception — All rights reserved.</p>
   </div>
 </footer>
+
 </body>
 </html>
