@@ -90,3 +90,11 @@ header .topbar { padding: 22px 0 !important; }
   header .brand-logo { height: 56px !important; }
   header .topbar { padding: 16px 0 !important; }
 }
+
+/* Change nav hover + active highlight to brown */
+.nav a.active,
+.nav a:hover {
+  background: #4C1F00 !important;
+  color: #ffffff !important;       /* make text white for contrast */
+  border-radius: 6px;
+}
