@@ -400,3 +400,97 @@ header .topbar{ padding: 26px 0 !important; } /* room for tall logo */
 
 /* Helper to paint the brand name brown anywhere */
 .brand-brown{ color: var(--brand-brown) !important; }
+
+/* === FRONTLINE RECEPTION — COMFORT & BRAND POLISH === */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* Global font change */
+body, html {
+  font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+  color: #1a1a1a;
+}
+
+/* --- Bigger, freer logo --- */
+header .brand-logo {
+  height: 130px !important;          /* significantly larger */
+  width: auto !important;
+  object-fit: contain !important;
+  display: block !important;
+  margin: 0 !important;
+}
+footer .brand-logo {
+  height: 100px !important;
+  width: auto !important;
+  object-fit: contain !important;
+}
+
+/* Give header more room for the tall logo */
+header .topbar { padding: 28px 0 !important; }
+
+/* Adjust sticky offset for anchor scrolls */
+:root { --header-offset: 140px; --brand-brown: #4C1F00; }
+
+/* --- Footer contact info color fix --- */
+.footer, .footer a, .footer a:visited {
+  color: var(--brand-brown) !important;
+}
+.footer a:hover {
+  text-decoration: underline;
+  opacity: .9;
+}
+
+/* --- About section: comfort layout --- */
+.section--about {
+  position: relative;
+  padding: 60px 0 40px;
+}
+.section--about::before {
+  content:"";
+  position:absolute;
+  inset:0;
+  background: rgba(255,255,255,0.82);
+  backdrop-filter: blur(4px);
+  border-radius: 20px;
+  z-index:0;
+}
+.section--about > * { position: relative; z-index: 1; }
+
+.section--about .prose {
+  max-width: 80ch;
+  font-size: 1.15rem;          /* larger text */
+  line-height: 1.9;            /* more breathing space */
+  color: #141414;
+  margin: 10px auto 28px;
+  text-align: justify;         /* optional — can remove if you prefer ragged right */
+}
+.section--about .prose p { margin: 0 0 1.2em; }
+
+/* Softer card look under About */
+.section--about .card {
+  background: rgba(255,255,255,0.95);
+  border: 1px solid rgba(0,0,0,0.05);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+}
+
+/* --- Nav hover color to brand brown --- */
+.nav a.active,
+.nav a:hover {
+  background: var(--brand-brown) !important;
+  color: #fff !important;
+  border-radius: 6px;
+}
+
+/* --- Mobile-friendly logo scaling --- */
+@media (max-width: 700px) {
+  header .brand-logo {
+    height: 80px !important;
+  }
+  footer .brand-logo {
+    height: 70px !important;
+  }
+  .section--about .prose {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    padding: 0 8px;
+  }
+}
