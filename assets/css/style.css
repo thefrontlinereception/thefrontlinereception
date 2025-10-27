@@ -323,3 +323,81 @@ header .topbar { padding: 22px 0 !important; }
 .brand-brown { color: var(--brand-brown) !important; }
   border-radius: 6px;
 }
+
+/* ===== FrontlineReception One-Pager Upgrades ===== */
+:root{
+  /* header height used for anchor offset; bump because logo is bigger */
+  --header-offset: 120px;
+  --brand-brown: #4C1F00;
+}
+
+/* 1) BIGGER LOGO (desktop + mobile) */
+header .brand-logo{
+  height: 112px !important;   /* go bigger here if you want (120–140px OK) */
+  width: auto !important;
+  object-fit: contain !important;
+  display: block !important;
+}
+footer .brand-logo{
+  height: 90px !important;
+  width: auto !important;
+  object-fit: contain !important;
+}
+header .topbar{ padding: 26px 0 !important; } /* room for tall logo */
+
+@media (max-width: 700px){
+  header .brand-logo{ height: 72px !important; }
+  header .topbar{ padding: 18px 0 !important; }
+}
+
+/* If your nav highlight was blue, keep brown */
+.nav a.active,.nav a:hover{
+  background: var(--brand-brown) !important;
+  color:#fff !important;
+  border-radius:6px;
+}
+
+/* Footer words & links brown */
+.footer, .footer a, .footer a:visited{ color: var(--brand-brown) !important; }
+.footer a:hover{ opacity:.9; text-decoration:underline; }
+
+/* 2) ABOUT SECTION READABILITY */
+.section--about{
+  position: relative;
+  padding-top: 36px;           /* a bit more space above text */
+}
+.section--about::before{
+  /* soft overlay behind ABOUT to boost contrast on the photo bg */
+  content:"";
+  position:absolute; inset:0;
+  background: rgba(255,255,255,0.70);      /* feel free to try 0.65–0.80 */
+  backdrop-filter: blur(2px);
+  z-index:0;
+  border-radius: 18px;
+}
+.section--about > *{ position:relative; z-index:1; }
+
+.section--about .prose{
+  /* comfortable reading column */
+  max-width: 78ch;              /* ~65–80 characters per line is ideal */
+  font-size: 1.05rem;           /* slightly larger than body */
+  line-height: 1.75;            /* airy line height */
+  color: #0f172a;               /* high contrast on the soft white panel */
+  margin: 6px 0 22px;
+}
+.section--about .prose p{ margin: 0 0 1em; }
+.section--about .prose p + p{ margin-top: .4em; }
+
+@media (max-width: 800px){
+  .section--about .prose{ font-size: 1rem; line-height: 1.7; }
+}
+
+/* Optional: make the two info cards sit on a slightly stronger surface */
+.section--about .card{
+  background: rgba(255,255,255,0.92);
+  border: 1px solid rgba(15, 23, 42, 0.06);
+}
+
+/* Helper to paint the brand name brown anywhere */
+.brand-brown{ color: var(--brand-brown) !important; }
+That’s it
