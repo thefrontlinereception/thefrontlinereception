@@ -101,3 +101,30 @@ footer .brand-logo{height:90px;width:auto;object-fit:contain}
 
 /* SCROLL OFFSET FOR ANCHORS */
 section[id]{scroll-margin-top:var(--header-offset)}
+
+* === TUNE: logo size, header space, background visibility === */
+:root { --header-offset: 110px; } /* smaller offset to match shorter header */
+
+/* Make logo reasonable on desktop + mobile */
+header .brand-logo { height: 88px !important; width:auto !important; object-fit:contain !important; }
+footer .brand-logo { height: 80px !important; }
+
+header .topbar { padding: 14px 0 !important; } /* less vertical space */
+
+/* Smaller on phones */
+@media (max-width: 700px){
+  header .brand-logo { height: 56px !important; }
+  header .topbar { padding: 10px 0 !important; }
+}
+
+/* Let the hero start sooner (so the background photo is visible) */
+.hero { padding: clamp(140px, 24vh, 220px) 0 64px !important; }
+
+/* The white readability veil was too strong—lighten it so the photo shows */
+body::before { background: rgba(255,255,255,0.35) !important; }  /* was ~0.62 */
+
+/* Keep nav highlight brown (in case older rules creep back) */
+.nav a.active, .nav a:hover {
+  background: #4C1F00 !important;
+  color: #fff !important;
+}
