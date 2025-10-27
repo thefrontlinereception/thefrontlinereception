@@ -293,5 +293,33 @@ header .topbar {
 .nav a:hover {
   background: #4C1F00 !important;
   color: #ffffff !important;       /* make text white for contrast */
+
+  /* === FrontlineReception overrides (paste at END of style.css) === */
+:root { --brand-brown: #4C1F00; }
+
+/* Bigger logo (header + footer) */
+header .brand-logo { height: 96px !important; width: auto !important; object-fit: contain !important; }
+footer .brand-logo { height: 80px !important;  width: auto !important; object-fit: contain !important; }
+/* give header a bit more breathing room with the taller logo */
+header .topbar { padding: 22px 0 !important; }
+
+/* Nav highlight: use brand brown instead of blue */
+.nav a.active,
+.nav a:hover {
+  background: var(--brand-brown) !important;
+  color: #fff !important;
+  border-radius: 6px;
+}
+
+/* Footer contact text & links: make brown (not blue) */
+.footer,
+.footer a,
+.footer a:visited {
+  color: var(--brand-brown) !important;
+}
+.footer a:hover { text-decoration: underline; opacity: .9; }
+
+/* Brand name helper class for brown text anywhere */
+.brand-brown { color: var(--brand-brown) !important; }
   border-radius: 6px;
 }
