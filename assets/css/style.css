@@ -105,3 +105,33 @@ footer .brand-logo{height:90px;width:auto;object-fit:contain}
 
 /* SCROLL OFFSET FOR ANCHORS */
 section[id]{scroll-margin-top:var(--header-offset)}
+
+/* === FRONTLINE POLISH FIXES (readability + spacing) === */
+
+/* Softer global overlay to restore page readability */
+body::before {
+  background: rgba(255,255,255,0.55) !important; /* slightly stronger than 0.35 */
+  backdrop-filter: blur(2px);
+}
+
+/* ABOUT section background — airy white panel */
+.section--about::before {
+  background: rgba(255,255,255,0.80) !important; /* was 0.82 solid white */
+  backdrop-filter: blur(4px);
+  border-radius: 18px;
+}
+
+/* Move the "About" title slightly right */
+.section--about h2 {
+  margin-left: 16px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+/* Make the About text even more comfortable */
+.section--about .prose {
+  font-size: 1.18rem;
+  line-height: 1.9;
+  color: #141414;
+  max-width: 82ch;
+}
