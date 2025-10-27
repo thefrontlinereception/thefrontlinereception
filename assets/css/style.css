@@ -135,3 +135,38 @@ body::before {
   color: #141414;
   max-width: 82ch;
 }
+/* === Logo Polish — Sleek & Modern === */
+
+/* Header layout balance */
+header .topbar {
+  padding: 18px 0 !important;
+  align-items: center;
+}
+
+/* Logo: slightly larger, crisp, floating effect */
+header .brand-logo {
+  height: 96px !important;
+  width: auto !important;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.2));
+  transition: transform 0.25s ease, filter 0.25s ease;
+}
+
+/* Hover effect (optional, subtle zoom) */
+header .brand-logo:hover {
+  transform: scale(1.03);
+  filter: drop-shadow(0 4px 10px rgba(0,0,0,0.25));
+}
+
+/* Keep nav nicely aligned next to taller logo */
+.nav {
+  margin-top: 8px;
+}
+
+/* Slightly shrink on mobile for fit */
+@media (max-width: 700px) {
+  header .brand-logo {
+    height: 72px !important;
+  }
+}
