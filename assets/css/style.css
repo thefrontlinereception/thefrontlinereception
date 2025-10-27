@@ -400,4 +400,3 @@ header .topbar{ padding: 26px 0 !important; } /* room for tall logo */
 
 /* Helper to paint the brand name brown anywhere */
 .brand-brown{ color: var(--brand-brown) !important; }
-That’s it
