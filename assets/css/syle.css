@@ -11,7 +11,7 @@
   --accent:var(--brand-brown);
   --accent-weak:#efe7e1;
   --shadow:0 8px 24px rgba(2,6,23,.06);
-  --header-offset:140px;            /* used for anchor offset */
+  --header-offset:60px;            /* used for anchor offset */
   --page-overlay:rgba(255,255,255,.62);
 }
 
