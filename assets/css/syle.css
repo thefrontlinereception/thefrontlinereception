@@ -128,3 +128,50 @@ body::before { background: rgba(255,255,255,0.35) !important; }  /* was ~0.62 */
   background: #4C1F00 !important;
   color: #fff !important;
 }
+/* === FINAL OVERRIDES (logo size, header spacing, footer color) === */
+
+/* Keep anchors from jumping under the header */
+:root { --header-offset: 110px; }
+
+/* Make the logo a sensible size */
+header .brand-logo,
+.brand .brand-logo,
+img.brand-logo {
+  height: 88px !important;
+  width: auto !important;
+  object-fit: contain !important;
+  display: block !important;
+}
+
+/* Header spacing for that logo */
+header .topbar { padding: 14px 0 !important; }
+
+/* Show more of the background photo in the hero */
+.hero { padding: clamp(140px, 24vh, 220px) 0 64px !important; }
+
+/* Make the background photo visible (lighten veil) */
+body::before { background: rgba(255,255,255,0.35) !important; }
+
+/* Footer: force brown text/links */
+.footer,
+.footer a,
+.footer a:visited,
+.footer .note a,
+.footer .note a:visited {
+  color: #4C1F00 !important;
+}
+.footer a:hover { text-decoration: underline; opacity: .9; }
+
+/* Nav highlight stays brown (safety net) */
+.nav a.active,
+.nav a:hover {
+  background: #4C1F00 !important;
+  color: #fff !important;
+  border-radius: 6px;
+}
+
+/* Mobile tweaks */
+@media (max-width: 700px){
+  header .brand-logo { height: 56px !important; }
+  header .topbar { padding: 10px 0 !important; }
+}
