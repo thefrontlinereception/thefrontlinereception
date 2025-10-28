@@ -145,7 +145,7 @@ header .topbar {
 
 /* Logo: slightly larger, crisp, floating effect */
 header .brand-logo {
-  height: 96px !important;
+  height: 112px !important;
   width: auto !important;
   object-fit: contain;
   display: block;
