@@ -176,3 +176,10 @@ header .brand-logo:hover {
 #about {
   margin-top: 120px; /* increase spacing before about */
 }
+.phone{
+  margin-left:12px;
+  font-weight:700;
+  color:var(--brand-brown);
+  white-space:nowrap;
+}
+.phone:hover{text-decoration:underline}
