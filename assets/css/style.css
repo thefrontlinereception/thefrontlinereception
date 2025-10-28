@@ -173,3 +173,6 @@ header .brand-logo:hover {
 #pricing {
   margin-top: 120px; /* increase spacing before pricing */
 }
+#about {
+  margin-top: 120px; /* increase spacing before about */
+}
