@@ -170,3 +170,6 @@ header .brand-logo:hover {
     height: 72px !important;
   }
 }
+#pricing {
+  margin-top: 120px; /* increase spacing before pricing */
+}
