@@ -183,3 +183,9 @@ header .brand-logo:hover {
   white-space:nowrap;
 }
 .phone:hover{text-decoration:underline}
+/* --- Logo size override --- */
+header .brand-logo,
+.brand-logo {
+  height: 120px !important;
+  width: auto !important;
+}
