@@ -1,54 +1,71 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>SMS Consent | Frontline Reception</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<main class="container" style="max-width:720px;margin:40px auto;">
 
-  <!-- Use your existing site CSS -->
-  <link rel="stylesheet" href="/css/style.css">
-</head>
-
-<body>
-
-<header>
-  <a href="/">
-    <img src="/img/logo.png" alt="Frontline Reception">
-  </a>
-</header>
-
-<main class="container">
-  <h1>SMS Communication Consent</h1>
+  <h1 style="margin-bottom:10px;">SMS Communication Consent</h1>
+  <p style="color:#555;margin-bottom:30px;">
+    Please provide your phone number below. SMS consent is optional and not required
+    to submit this form.
+  </p>
 
   <form>
-    <label>
-      Mobile Phone Number<br>
-      <input type="tel" name="phone" placeholder="e.g. 845-555-1234">
-    </label>
 
-    <br><br>
+    <div style="margin-bottom:20px;">
+      <label style="font-weight:600;">
+        Mobile Phone Number
+      </label><br>
+      <input
+        type="tel"
+        name="phone"
+        placeholder="e.g. 845-555-1234"
+        style="
+          width:100%;
+          padding:12px;
+          margin-top:6px;
+          font-size:16px;
+          border:1px solid #ccc;
+          border-radius:6px;
+        ">
+    </div>
 
-    <!-- CTIA REQUIRED CHECKBOX -->
-    <label>
-      <input type="checkbox" name="sms_consent">
-      By checking this box, you agree to receive recurring messages from
-      <strong>Frontline Reception</strong> related to your request for information.
-      Message and data rates may apply. Carriers are not liable for delayed or
-      undelivered messages. Text <strong>HELP</strong> for help and
-      <strong>STOP</strong> to unsubscribe.
-      <br><br>
-      <a href="/txt" target="_blank">SMS Terms & Privacy</a>
-    </label>
+    <!-- Consent Box -->
+    <div style="
+      border:1px solid #e5e7eb;
+      background:#f9fafb;
+      padding:16px;
+      border-radius:8px;
+      margin-bottom:25px;
+    ">
+      <label style="display:flex;gap:10px;cursor:pointer;">
+        <input type="checkbox" name="sms_consent" style="margin-top:4px;">
+        <span style="font-size:14px;line-height:1.6;">
+          By checking this box, you agree to receive recurring SMS messages from
+          <strong>Frontline Reception</strong> related to your request for information.
+          Message and data rates may apply. Carriers are not liable for delayed or
+          undelivered messages. Text <strong>HELP</strong> for help and
+          <strong>STOP</strong> to unsubscribe.
+          <br><br>
+          <a href="/txt" target="_blank">View SMS Terms & Privacy</a>
+        </span>
+      </label>
+    </div>
 
-    <br><br>
+    <button
+      type="submit"
+      style="
+        background:#2563eb;
+        color:#fff;
+        border:none;
+        padding:12px 24px;
+        font-size:16px;
+        border-radius:6px;
+        cursor:pointer;
+      ">
+      Submit
+    </button>
 
-    <button type="submit">Submit</button>
   </form>
 
-  <p style="margin-top:20px;font-size:14px;">
+  <p style="margin-top:25px;font-size:13px;color:#666;">
     Consent is not a condition of purchase or service.
   </p>
-</main>
 
-</body>
-</html>
+</main>
