@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>SMS Consent | Frontline Reception</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Use your existing site CSS -->
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+<header>
+  <a href="/">
+    <img src="/img/logo.png" alt="Frontline Reception">
+  </a>
+</header>
+
+<main class="container">
+  <h1>SMS Communication Consent</h1>
+
+  <form>
+    <label>
+      Mobile Phone Number<br>
+      <input type="tel" name="phone" placeholder="e.g. 845-555-1234">
+    </label>
+
+    <br><br>
+
+    <!-- CTIA REQUIRED CHECKBOX -->
+    <label>
+      <input type="checkbox" name="sms_consent">
+      By checking this box, you agree to receive recurring messages from
+      <strong>Frontline Reception</strong> related to your request for information.
+      Message and data rates may apply. Carriers are not liable for delayed or
+      undelivered messages. Text <strong>HELP</strong> for help and
+      <strong>STOP</strong> to unsubscribe.
+      <br><br>
+      <a href="/txt" target="_blank">SMS Terms & Privacy</a>
+    </label>
+
+    <br><br>
+
+    <button type="submit">Submit</button>
+  </form>
+
+  <p style="margin-top:20px;font-size:14px;">
+    Consent is not a condition of purchase or service.
+  </p>
+</main>
+
+</body>
+</html>
