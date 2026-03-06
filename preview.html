@@ -1,0 +1,521 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Frontline Reception · Professional customer service & workflow automation</title>
+<meta name="description" content="Professional call handling, scheduling, and CRM-backed workflow automation—so your team can focus on growth with full visibility and control.">
+
+<meta property="og:title" content="Frontline Reception · Professional customer service & workflow automation">
+<meta property="og:description" content="Professional call handling, scheduling, and CRM-backed workflow automation—so your team can focus on growth with full visibility and control.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="assets/img/og-placeholder.png">
+
+<link rel="icon" href="assets/img/og-placeholder.png">
+<link rel="stylesheet" href="assets/css/style.css">
+
+<style>
+  /* ===== Flip cards for Services section ===== */
+  .flip-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:24px;
+  }
+
+  .flip-card{
+    perspective:1200px;
+    min-height:380px;
+  }
+
+  .flip-card-inner{
+    position:relative;
+    width:100%;
+    height:100%;
+    min-height:380px;
+    transition:transform 0.8s ease;
+    transform-style:preserve-3d;
+  }
+
+  .flip-card:hover .flip-card-inner{
+    transform:rotateY(180deg);
+  }
+
+  .flip-card-front,
+  .flip-card-back{
+    position:absolute;
+    inset:0;
+    backface-visibility:hidden;
+    -webkit-backface-visibility:hidden;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 14px 34px rgba(0,0,0,0.12);
+    padding:28px 24px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+  }
+
+  .flip-card-front{
+    background:linear-gradient(145deg,#ffffff 0%,#f5f7fb 100%);
+    border:1px solid rgba(0,0,0,0.06);
+  }
+
+  .flip-card-back{
+    background:#D84413;
+    color:#fff;
+    transform:rotateY(180deg);
+    border:1px solid rgba(255,255,255,0.12);
+  }
+
+  .flip-card-front h3,
+  .flip-card-back h3{
+    margin:10px 0 12px;
+  }
+
+  .flip-card-front p,
+  .flip-card-back p{
+    margin:0 0 14px;
+    line-height:1.65;
+  }
+
+  .flip-card-back .check{
+    margin:0;
+    padding-left:18px;
+  }
+
+  .flip-card-back .check li{
+    margin-bottom:10px;
+  }
+
+  .flip-cover-label{
+    display:inline-block;
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    opacity:.85;
+    margin-bottom:8px;
+  }
+
+  .flip-icon{
+    font-size:42px;
+    line-height:1;
+    margin-bottom:18px;
+  }
+
+  .flip-hint{
+    margin-top:18px;
+    font-size:13px;
+    font-weight:600;
+    opacity:.75;
+  }
+
+  @media (max-width: 900px){
+    .flip-card{
+      min-height:360px;
+    }
+
+    .flip-card-inner{
+      min-height:360px;
+    }
+  }
+
+  @media (hover:none){
+    .flip-card:hover .flip-card-inner{
+      transform:none;
+    }
+  }
+</style>
+
+<script defer>
+  function toggleNav(){ document.querySelector('.nav').classList.toggle('open'); }
+
+  document.addEventListener('click', e => {
+    if (e.target.matches('.nav a')) document.querySelector('.nav').classList.remove('open');
+  });
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const links = [...document.querySelectorAll('.nav a[href^="#"]')];
+    const map = new Map(links.map(a => [a.getAttribute('href'), a]));
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const id = `#${entry.target.id}`;
+        const link = map.get(id);
+        if (!link) return;
+        if (entry.isIntersecting) {
+          links.forEach(l => l.classList.remove('active'));
+          link.classList.add('active');
+        }
+      });
+    }, {
+      rootMargin: `-${parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-offset') || 80)}px 0px -60% 0px`,
+      threshold: 0.01
+    });
+
+    document.querySelectorAll('section[id]').forEach(s => obs.observe(s));
+  });
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "url": "https://frontlinereception.com",
+  "telephone": "(718) 307-4611",
+  "email": "info@frontlinereception.com",
+  "description": "Professional customer service, scheduling, and CRM-backed workflow automation for growing businesses."
+}
+</script>
+</head>
+
+<body>
+
+<header>
+  <div class="container topbar">
+    <div class="brand">
+      <img src="assets/img/logo.png" alt="FrontlineReception Logo" class="brand-logo">
+    </div>
+    <nav class="nav">
+      <a href="#home" class="active">Home</a>
+      <a href="#services">Services</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#testimonials">Testimonials</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+      <a href="tel:7183074611" class="phone">718-307-4611</a>
+    </nav>
+    <button class="mobile-toggle" onclick="toggleNav()">Menu ▾</button>
+  </div>
+</header>
+
+<main class="container">
+
+<section id="home" class="hero hero--on-photo">
+  <h1 class="title" style="color:#D84413; font-size:clamp(34px,6vw,64px); font-weight:800; line-height:1.15; text-shadow:0 4px 18px rgba(0,0,0,0.45);">
+    Professional, courteous customer service — powered by smart workflows and CRM automation.
+  </h1>
+  <p class="subtitle" style="color:#4C1F00; font-size:clamp(18px,2.6vw,26px); font-weight:500; max-width:900px; margin-top:18px; text-shadow:0 3px 14px rgba(0,0,0,0.55);">
+    We answer calls, manage scheduling, confirmations, and follow-ups, and keep your team in sync. Our CRM-backed system optimizes and automates workflows so you can focus on growth. Bilingual support available: English & Yiddish.
+  </p>
+</section>
+
+<section id="services" class="section">
+  <h2>Services</h2>
+
+  <div class="flip-grid">
+
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div>
+            <div class="flip-icon">☎</div>
+            <span class="flip-cover-label">Client Communication</span>
+            <h3>Live Call Answering & Customer Service</h3>
+            <p>Professional front-desk support that feels like a seamless extension of your office.</p>
+          </div>
+          <div class="flip-hint">Hover to see details</div>
+        </div>
+
+        <div class="flip-card-back">
+          <div>
+            <span class="flip-cover-label">More Details</span>
+            <h3>Live Call Answering & Customer Service</h3>
+            <p>Every call is handled promptly, professionally, and with warmth — so your clients feel heard, respected, and cared for. Your team stays focused while we protect your customer experience.</p>
+            <ul class="check">
+              <li>Live call answering & routing</li>
+              <li>Accurate message-taking, ticketing, and follow-ups</li>
+              <li>Bilingual support available (English & Yiddish)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div>
+            <div class="flip-icon">📅</div>
+            <span class="flip-cover-label">Scheduling</span>
+            <h3>Appointments, Confirmations & Calendar Control</h3>
+            <p>Organized scheduling that protects your calendar and keeps your day running smoothly.</p>
+          </div>
+          <div class="flip-hint">Hover to see details</div>
+        </div>
+
+        <div class="flip-card-back">
+          <div>
+            <span class="flip-cover-label">More Details</span>
+            <h3>Appointments, Confirmations & Calendar Control</h3>
+            <p>We schedule with precision and consistency — following your rules, protecting your calendar, and reducing disruptions caused by overbooking, late arrivals, or unclear expectations.</p>
+            <ul class="check">
+              <li>Booking, rescheduling, cancellations</li>
+              <li>Confirmations & reminders</li>
+              <li>Daily schedules sent to you and your team</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div>
+            <div class="flip-icon">⚙</div>
+            <span class="flip-cover-label">Systems</span>
+            <h3>CRM + Workflow Automation</h3>
+            <p>Smart systems that show what happens next, who handles it, and when it gets done.</p>
+          </div>
+          <div class="flip-hint">Hover to see details</div>
+        </div>
+
+        <div class="flip-card-back">
+          <div>
+            <span class="flip-cover-label">More Details</span>
+            <h3>CRM + Workflow Automation (“What Triggers What”)</h3>
+            <p>A core part of our service is building clear workflow rules so everyone knows what happens next. We use a robust CRM system to optimize and automate follow-ups, tasks, and communication — with full visibility for you.</p>
+            <ul class="check">
+              <li>Workflow rules & automations built to match your business</li>
+              <li>Task tracking and accountability</li>
+              <li>Structured communication between your office, our team, and your staff</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="pricing" class="section">
+  <h2>Pricing</h2>
+
+  <div class="flip-grid">
+
+    <!-- Simple Weekly Pricing -->
+    <div class="flip-card">
+      <div class="flip-card-inner">
+
+        <div class="flip-card-front">
+          <div>
+            <span class="flip-cover-label">Pricing</span>
+            <h3>Simple Weekly Pricing</h3>
+            <p>Clear and predictable billing for your business.</p>
+          </div>
+          <div class="flip-hint">Hover to see details</div>
+        </div>
+
+        <div class="flip-card-back">
+          <div>
+            <span class="flip-cover-label">Details</span>
+            <h3>Simple Weekly Pricing</h3>
+            <ul class="check">
+              <li>Transparent weekly rates</li>
+              <li>No hidden fees</li>
+              <li>Flat predictable pricing</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Dedicated Weekly Coverage -->
+    <div class="flip-card">
+      <div class="flip-card-inner">
+
+        <div class="flip-card-front">
+          <div>
+            <span class="flip-cover-label">Pricing</span>
+            <h3>Dedicated Weekly Coverage</h3>
+            <p>Reliable business-hour support every week.</p>
+          </div>
+          <div class="flip-hint">Hover to see details</div>
+        </div>
+
+        <div class="flip-card-back">
+          <div>
+            <span class="flip-cover-label">Details</span>
+            <h3>Dedicated Weekly Coverage</h3>
+            <ul class="check">
+              <li>40 hours weekly support</li>
+              <li>Monday–Thursday 9AM–6PM</li>
+              <li>Friday 9AM–1PM coverage</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Fully Customizable Plans -->
+    <div class="flip-card">
+      <div class="flip-card-inner">
+
+        <div class="flip-card-front">
+          <div>
+            <span class="flip-cover-label">Pricing</span>
+            <h3>Fully Customizable Plans</h3>
+            <p>Plans designed around your business needs.</p>
+          </div>
+          <div class="flip-hint">Hover to see details</div>
+        </div>
+
+        <div class="flip-card-back">
+          <div>
+            <span class="flip-cover-label">Details</span>
+            <h3>Fully Customizable Plans</h3>
+            <ul class="check">
+              <li>Choose number of representatives</li>
+              <li>Select preferred hours</li>
+              <li>Scale coverage as your business grows</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="testimonials" class="section">
+  <h2>Testimonials</h2>
+  <div class="grid cards">
+
+    <div class="card">
+      <h3>“They brought calm and structure.”</h3>
+      <p class="note">“Our calls are handled with professionalism and sensitivity, our appointments flow smoothly, and our staff can focus fully on client care.”</p>
+      <p>— Leah Rokeach, Salon Owner</p>
+    </div>
+
+    <div class="card">
+      <h3>“A real partner — not just a service.”</h3>
+      <p class="note">“They learned how our business operates and built clear workflows around it. We feel supported without ever losing visibility or control.”</p>
+      <p>— Yaakov Shweid, Service Business Owner</p>
+    </div>
+
+    <div class="card">
+      <h3>“Communication is smoother, schedules stay on track.”</h3>
+      <p class="note">“Clients immediately noticed the difference. Fewer scheduling issues, better follow-through, and a team that feels far less overwhelmed.”</p>
+      <p>— Rifka Klein, Operations Manager</p>
+    </div>
+
+    <div class="card">
+      <h3>“It feels like an extension of our office.”</h3>
+      <p class="note">“We have full access to everything, clear communication at all times, and confidence that our customers are treated with respect.”</p>
+      <p>— Menachem Green, Small Business Owner</p>
+    </div>
+
+    <div class="card">
+      <h3>“One of our best operational decisions.”</h3>
+      <p class="note">“The onboarding was thoughtful, the systems are solid, and the long-term impact has been increased efficiency with far less stress.”</p>
+      <p>— Chaim Stern, Professional Services Firm</p>
+    </div>
+
+  </div>
+</section>
+
+<section id="about" class="section section--about">
+  <h2>About</h2>
+  <div class="prose">
+    <p>Frontline Reception was built to help growing businesses bring structure, professionalism, and calm to their daily operations.</p>
+
+    <p>We are not a traditional call center. We operate as a <strong>customer service and workflow partner</strong> — supporting businesses that want their client communication, scheduling, and internal coordination handled with care, consistency, and precision.</p>
+
+    <p>As businesses grow, the volume of calls, appointments, changes, and customer questions grows with them. When these responsibilities are layered onto already-busy in-house teams, things can quickly become overwhelming. Important details get missed, schedules become chaotic, and the client experience can suffer — even when everyone is working hard.</p>
+
+    <p>That is where we come in.</p>
+
+    <p>At Frontline Reception, we take the time to truly understand how your business runs. We learn your policies, your booking rules, your priorities, and the standards you expect your customers to experience. From there, we build clear systems that allow our team to act as a seamless extension of yours.</p>
+
+    <p>We believe professional, courteous communication matters — not just for first impressions, but for long-term trust. Every call is answered calmly and respectfully. Every appointment is scheduled with intention. Every interaction is handled with the understanding that we are representing a business you have worked hard to build.</p>
+
+    <p>Equally important, we believe business owners should never feel disconnected from operations. You maintain full visibility into calls, schedules, tasks, and customer communication at all times. Our role is to support and strengthen your business — not to take control away from you.</p>
+
+    <p><strong>Frontline Reception:</strong> Professional service, clear systems, and full transparency — so your team can focus on expanding.</p>
+  </div>
+
+  <div class="grid cards">
+    <div class="card">
+      <h3>Our Principles: The 3 R's</h3>
+      <ul class="check">
+        <li><strong>Responsible</strong> — We take ownership and follow through.</li>
+        <li><strong>Respectful</strong> — We treat everyone with professionalism.</li>
+        <li><strong>Resourceful</strong> — We find solutions and assist thoroughly.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>How we work</h3>
+      <p>We learn your business, define workflow rules (“what triggers what”), and coordinate with your team using clear processes and CRM-backed automation—while you keep full visibility and control.</p>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="section">
+  <h2>Contact</h2>
+  <p>Tell us about your needs and we’ll tailor a plan for you. Prefer email? Write us at
+    <a href="mailto:info@frontlinereception.com">info@frontlinereception.com</a>.
+  </p>
+
+  <form class="form" method="POST" action="https://formsubmit.co/thefrontlinereception@gmail.com">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_subject" value="New inquiry from FrontlineReception website">
+
+    <div class="row">
+      <div>
+        <label>Your Name</label>
+        <input name="name" placeholder="Full name" required>
+      </div>
+      <div>
+        <label>Company</label>
+        <input name="company" placeholder="Company name">
+      </div>
+    </div>
+
+    <div class="row">
+      <div>
+        <label>Email</label>
+        <input type="email" name="email" placeholder="you@company.com" required>
+      </div>
+      <div>
+        <label>Phone</label>
+        <input name="phone" placeholder="+1 (___) ___-____">
+      </div>
+    </div>
+
+    <div>
+      <label>How can we help?</label>
+      <textarea name="message" rows="6" placeholder="Tell us about your call volume, inbox needs, billing, scheduling, etc." required></textarea>
+    </div>
+
+    <div>
+      <button class="btn" type="submit">Send message</button>
+    </div>
+  </form>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="cols">
+      <div class="brand hpair">
+        <img src="assets/img/logo.png" alt="FrontlineReception Logo" class="brand-logo">
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <p class="note">
+          <a href="tel:+17183074611">(718) 307-4611</a><br>
+          <a href="mailto:info@frontlinereception.com">info@frontlinereception.com</a><br>
+        </p>
+      </div>
+    </div>
+    <p class="note" style="margin-top:18px;">© FrontlineReception — All rights reserved.</p>
+  </div>
+</footer>
+
+</body>
+</html>
