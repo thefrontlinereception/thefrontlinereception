@@ -1,0 +1,397 @@
+/* ===== FrontlineReception — CLEAN BASE ===== */
+
+/* THEME */
+:root{
+  --bg:#f4f6f8;
+  --surface:#fff;
+  --text:#101828;
+  --muted:#475467;
+  --border:#e5e7eb;
+  --brand-brown:#4C1F00;
+  --accent:var(--brand-brown);
+  --accent-weak:#efe7e1;
+  --shadow:0 8px 24px rgba(2,6,23,.06);
+
+  /* header height used for anchor offset */
+  --header-offset:130px;
+
+  /* readability veil over photo */
+  --page-overlay:rgba(255,255,255,.35);
+}
+
+/* BASE */
+*{box-sizing:border-box}
+html{font-size:16px;scroll-behavior:smooth}
+body{
+  margin:0;
+  padding:0;
+  font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color:var(--text);
+  background:var(--bg) url('../img/background-office.png') no-repeat center top fixed;
+  background-size:cover;
+}
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:var(--page-overlay);
+  z-index:0;
+  pointer-events:none;
+}
+body>*{
+  position:relative;
+  z-index:1;
+}
+a{
+  color:var(--accent);
+  text-decoration:none;
+}
+a:hover{text-decoration:underline}
+.container{
+  width:min(1100px,92%);
+  margin:0 auto;
+}
+.section{padding:42px 0}
+.grid{
+  display:grid;
+  gap:16px;
+}
+.grid.cards{
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+}
+.card{
+  background:rgba(255,255,255,.9);
+  padding:18px;
+  border-radius:16px;
+  border:1px solid var(--border);
+  box-shadow:var(--shadow);
+  backdrop-filter:blur(6px);
+}
+.kicker{
+  font-size:12px;
+  letter-spacing:.18em;
+  color:#b45309;
+  text-transform:uppercase;
+}
+p,li{
+  font-size:1rem;
+  line-height:1.6;
+}
+
+/* HEADER / NAV */
+header{
+  position:sticky;
+  top:0;
+  z-index:1000;
+  width:100%;
+  background:rgba(255,255,255,.02);
+  -webkit-backdrop-filter:blur(12px) saturate(120%);
+  backdrop-filter:blur(12px) saturate(120%);
+  border-bottom:1px solid rgba(255,255,255,.22);
+}
+header .topbar{
+  width:min(1100px,92%);
+  margin:0 auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  padding:18px 0 !important;
+}
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  perspective:1000px;
+}
+
+/* Logo base */
+.brand-logo{
+  height:120px !important;
+  width:auto !important;
+  object-fit:contain;
+  display:block;
+  filter:drop-shadow(0 2px 6px rgba(0,0,0,0.2));
+  transition:transform 0.25s ease, filter 0.25s ease;
+  transform-style:preserve-3d;
+  backface-visibility:hidden;
+  transform-origin:center center;
+}
+
+/* 3D roll on page load */
+.brand-logo.logo-roll{
+  animation:logoRoll3D 1.4s cubic-bezier(.22,1,.36,1) forwards;
+}
+
+@keyframes logoRoll3D{
+  0%{
+    transform:perspective(900px) rotateY(-180deg) rotateX(10deg) scale(0.85) translateY(-20px);
+    opacity:0;
+  }
+  55%{
+    transform:perspective(900px) rotateY(18deg) rotateX(-2deg) scale(1.05) translateY(0);
+    opacity:1;
+  }
+  100%{
+    transform:perspective(900px) rotateY(0deg) rotateX(0deg) scale(1) translateY(0);
+    opacity:1;
+  }
+}
+
+/* Hover effect */
+header .brand-logo:hover{
+  transform:scale(1.03);
+  filter:drop-shadow(0 4px 10px rgba(0,0,0,0.25));
+}
+
+/* NAV */
+.nav{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-top:8px;
+}
+.nav a{
+  padding:10px 12px;
+  border-radius:10px;
+  color:var(--text);
+}
+.nav a.active,
+.nav a:hover{
+  background:var(--brand-brown);
+  color:#fff;
+  border-radius:6px;
+}
+
+/* phone link in nav */
+.phone{
+  margin-left:12px;
+  font-weight:700;
+  color:var(--brand-brown);
+  white-space:nowrap;
+}
+.phone:hover{text-decoration:underline}
+
+/* MOBILE NAV */
+.mobile-toggle{display:none}
+@media (max-width:800px){
+  .nav{display:none}
+  .mobile-toggle{
+    display:inline-flex;
+    gap:8px;
+    align-items:center;
+    border:1px solid var(--border);
+    padding:8px 10px;
+    border-radius:10px;
+    background:var(--surface);
+  }
+  .nav.open{
+    display:flex;
+    flex-direction:column;
+    width:100%;
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:8px;
+  }
+  header .topbar{padding:10px 0 !important}
+  header .brand-logo{
+    height:72px !important;
+  }
+}
+
+/* HERO */
+.hero{
+  padding:clamp(140px,24vh,220px) 0 64px;
+}
+.hero--on-photo .title,
+.hero--on-photo .subtitle{
+  color:#fff;
+  text-shadow:0 4px 18px rgba(0,0,0,.45);
+}
+.hero .title{
+  font-size:clamp(34px,6vw,64px);
+  font-weight:800;
+  line-height:1.15;
+}
+.hero .subtitle{
+  font-size:clamp(18px,2.6vw,26px);
+  font-weight:500;
+  max-width:900px;
+  margin-top:18px;
+}
+
+/* FORMS */
+.form{
+  display:grid;
+  gap:14px;
+  max-width:680px;
+}
+.form .row{
+  display:grid;
+  gap:12px;
+  grid-template-columns:1fr 1fr;
+}
+input,textarea,select{
+  width:100%;
+  padding:12px 14px;
+  border-radius:12px;
+  border:1px solid var(--border);
+  background:var(--surface);
+  color:var(--text);
+}
+label{
+  font-weight:600;
+  margin-bottom:6px;
+  display:block;
+}
+.btn{
+  display:inline-block;
+  padding:12px 16px;
+  border-radius:12px;
+  background:var(--accent);
+  color:#fff;
+  font-weight:700;
+  box-shadow:var(--shadow);
+  border:1px solid var(--accent);
+  transition:transform .15s ease;
+}
+.btn:hover{
+  transform:translateY(-1px);
+}
+
+/* FOOTER */
+.footer{
+  margin-top:40px;
+  padding:26px 0 60px;
+  color:var(--brand-brown);
+  border-top:1px solid var(--border);
+  background:#fbfdff;
+}
+.footer .cols{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:20px;
+}
+footer .brand-logo{
+  height:90px !important;
+  width:auto;
+  object-fit:contain;
+}
+.footer,
+.footer a,
+.footer a:visited{
+  color:var(--brand-brown) !important;
+}
+.footer a:hover{
+  text-decoration:underline;
+  opacity:.9;
+}
+
+/* ABOUT — comfy reading */
+.section--about{
+  position:relative;
+  padding:60px 0 40px;
+}
+.section--about::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:rgba(255,255,255,.80) !important;
+  backdrop-filter:blur(4px);
+  border-radius:18px;
+  z-index:0;
+}
+.section--about>*{
+  position:relative;
+  z-index:1;
+}
+.section--about h2{
+  margin-left:16px;
+  font-weight:700;
+  color:#0f172a;
+}
+.section--about .prose{
+  max-width:82ch;
+  font-size:1.18rem;
+  line-height:1.9;
+  color:#141414;
+  margin:10px auto 28px;
+}
+.section--about .prose p{
+  margin:0 0 1.2em;
+}
+
+/* UTIL */
+.brand-brown{color:var(--brand-brown)!important}
+
+/* SCROLL OFFSET FOR ANCHORS */
+section[id]{
+  scroll-margin-top:var(--header-offset);
+}
+
+/* === FRONTLINE POLISH FIXES (readability + spacing) === */
+
+/* Softer global overlay to restore page readability */
+body::before{
+  background:rgba(255,255,255,0.55) !important;
+  backdrop-filter:blur(2px);
+}
+
+/* About section spacing */
+#pricing{
+  margin-top:120px;
+}
+#about{
+  margin-top:120px;
+}
+
+/* Smaller screens */
+@media (max-width:700px){
+  .form .row{
+    grid-template-columns:1fr;
+  }
+
+  #pricing,
+  #about{
+    margin-top:70px;
+  }
+}
+
+And make sure your HTML script has this inside the DOMContentLoaded part so the roll actually runs:
+
+<script defer>
+  function toggleNav(){ document.querySelector('.nav').classList.toggle('open'); }
+
+  document.addEventListener('click', e => {
+    if (e.target.matches('.nav a')) document.querySelector('.nav').classList.remove('open');
+  });
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const links = [...document.querySelectorAll('.nav a[href^="#"]')];
+    const map = new Map(links.map(a => [a.getAttribute('href'), a]));
+
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const id = `#${entry.target.id}`;
+        const link = map.get(id);
+        if (!link) return;
+        if (entry.isIntersecting) {
+          links.forEach(l => l.classList.remove('active'));
+          link.classList.add('active');
+        }
+      });
+    }, {
+      rootMargin: `-${parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-offset'))}px 0px -60% 0px`,
+      threshold: 0.01
+    });
+
+    document.querySelectorAll('section[id]').forEach(s => obs.observe(s));
+
+    document.querySelectorAll('.brand-logo').forEach((logo, index) => {
+      setTimeout(() => {
+        logo.classList.add('logo-roll');
+      }, index * 200);
+    });
+  });
+</script>
