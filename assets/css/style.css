@@ -361,37 +361,50 @@ body::before{
 And make sure your HTML script has this inside the DOMContentLoaded part so the roll actually runs:
 
 <script defer>
-  function toggleNav(){ document.querySelector('.nav').classList.toggle('open'); }
+  function toggleNav() {
+    document.querySelector('.nav').classList.toggle('open');
+  }
 
   document.addEventListener('click', e => {
-    if (e.target.matches('.nav a')) document.querySelector('.nav').classList.remove('open');
+    if (e.target.matches('.nav a')) {
+      document.querySelector('.nav').classList.remove('open');
+    }
   });
 
   document.addEventListener('DOMContentLoaded', () => {
     const links = [...document.querySelectorAll('.nav a[href^="#"]')];
     const map = new Map(links.map(a => [a.getAttribute('href'), a]));
 
+    const headerOffset = getComputedStyle(document.documentElement)
+      .getPropertyValue('--header-offset')
+      .trim();
+
     const obs = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         const id = `#${entry.target.id}`;
         const link = map.get(id);
         if (!link) return;
+
         if (entry.isIntersecting) {
           links.forEach(l => l.classList.remove('active'));
           link.classList.add('active');
         }
       });
     }, {
-      rootMargin: `-${parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-offset'))}px 0px -60% 0px`,
+      rootMargin: `-${parseInt(headerOffset || '130')}px 0px -60% 0px`,
       threshold: 0.01
     });
 
     document.querySelectorAll('section[id]').forEach(s => obs.observe(s));
 
+    /* force reflow, then add animation class */
     document.querySelectorAll('.brand-logo').forEach((logo, index) => {
+      logo.classList.remove('logo-roll');
+      void logo.offsetWidth;
+
       setTimeout(() => {
         logo.classList.add('logo-roll');
-      }, index * 200);
+      }, 250 + (index * 180));
     });
   });
 </script>
