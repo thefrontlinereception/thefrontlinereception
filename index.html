@@ -1,0 +1,1110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Frontline Reception · Professional Customer Service & Workflow Automation</title>
+<meta name="description" content="Professional call handling, scheduling, and CRM-backed workflow automation—so your team can focus on growth with full visibility and control.">
+<meta property="og:title" content="Frontline Reception · Professional Customer Service & Workflow Automation">
+<meta property="og:description" content="Professional call handling, scheduling, and CRM-backed workflow automation—so your team can focus on growth.">
+<meta property="og:type" content="website">
+<link rel="icon" href="assets/img/og-placeholder.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  /* ── TOKENS ────────────────────────────────────────────────── */
+  :root {
+    --brand:        #D84413;
+    --brand-dark:   #A83210;
+    --brand-light:  #F4C4A8;
+    --earth:        #4C1F00;
+    --warm-bg:      #FDF8F4;
+    --white:        #FFFFFF;
+    --text:         #1A1008;
+    --text-muted:   #6B5B4E;
+    --border:       #E8D8CC;
+    --card-bg:      #FFFFFF;
+    --section-alt:  #FFF4EE;
+
+    --font-display: 'Playfair Display', Georgia, serif;
+    --font-body:    'DM Sans', system-ui, sans-serif;
+
+    --radius-sm:  8px;
+    --radius-md: 16px;
+    --radius-lg: 24px;
+
+    --shadow-sm: 0 1px 4px rgba(74,30,0,.06), 0 4px 16px rgba(74,30,0,.04);
+    --shadow-md: 0 4px 16px rgba(74,30,0,.08), 0 16px 48px rgba(74,30,0,.06);
+    --shadow-lg: 0 8px 32px rgba(74,30,0,.12), 0 32px 80px rgba(74,30,0,.08);
+
+    --max-w: 1160px;
+    --header-h: 72px;
+  }
+
+  /* ── RESET ─────────────────────────────────────────────────── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; font-size: 16px; }
+  body {
+    font-family: var(--font-body);
+    background: var(--warm-bg);
+    color: var(--text);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  img { display: block; max-width: 100%; }
+  a { color: inherit; text-decoration: none; }
+  ul { list-style: none; }
+
+  /* ── LAYOUT HELPERS ─────────────────────────────────────────── */
+  .container { max-width: var(--max-w); margin: 0 auto; padding: 0 28px; }
+  .section { padding: 96px 0; }
+  .section-alt { background: var(--section-alt); }
+
+  /* ── HEADER ─────────────────────────────────────────────────── */
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    height: var(--header-h);
+    background: rgba(253,248,244,.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    transition: box-shadow .3s;
+  }
+  .header.scrolled { box-shadow: 0 2px 20px rgba(74,30,0,.08); }
+  .header .inner {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+  .brand-logo { height: 46px; width: auto; }
+  .nav {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .nav a {
+    font-size: .875rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    padding: 6px 14px;
+    border-radius: 100px;
+    transition: color .2s, background .2s;
+  }
+  .nav a:hover, .nav a.active { color: var(--brand); background: rgba(216,68,19,.07); }
+  .nav .cta-link {
+    background: var(--brand);
+    color: #fff;
+    padding: 8px 20px;
+    border-radius: 100px;
+    font-weight: 600;
+    font-size: .875rem;
+    transition: background .2s, transform .15s;
+  }
+  .nav .cta-link:hover { background: var(--brand-dark); transform: translateY(-1px); }
+  .mobile-toggle {
+    display: none;
+    background: none;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 7px 12px;
+    font-family: var(--font-body);
+    font-size: .875rem;
+    color: var(--text);
+    cursor: pointer;
+  }
+
+  /* ── HERO ───────────────────────────────────────────────────── */
+  .hero {
+    position: relative;
+    min-height: calc(100vh - var(--header-h));
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    background: var(--earth);
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 65% 40%, rgba(216,68,19,.35) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 80% at 10% 80%, rgba(76,31,0,.6) 0%, transparent 55%),
+      linear-gradient(135deg, #2A0E00 0%, #4C1F00 50%, #1A0800 100%);
+  }
+  .hero-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='.04'/%3E%3C/svg%3E");
+    opacity: .5;
+    pointer-events: none;
+  }
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 80px 28px 160px;
+    max-width: 900px;
+    animation: fadeUp .9s ease both;
+  }
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: .8rem;
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--brand-light);
+    background: rgba(216,68,19,.18);
+    border: 1px solid rgba(216,68,19,.3);
+    padding: 6px 16px;
+    border-radius: 100px;
+    margin-bottom: 32px;
+  }
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(38px, 6vw, 72px);
+    font-weight: 800;
+    color: #fff;
+    line-height: 1.12;
+    margin-bottom: 24px;
+  }
+  .hero-title span { color: var(--brand); }
+  .hero-subtitle {
+    font-size: clamp(17px, 2.2vw, 21px);
+    color: rgba(255,255,255,.72);
+    font-weight: 300;
+    max-width: 700px;
+    margin: 0 auto 48px;
+    line-height: 1.65;
+  }
+  .hero-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--brand);
+    color: #fff;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 14px 32px;
+    border-radius: 100px;
+    border: none;
+    cursor: pointer;
+    transition: background .2s, transform .15s, box-shadow .2s;
+    box-shadow: 0 4px 24px rgba(216,68,19,.4);
+  }
+  .btn-primary:hover { background: var(--brand-dark); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(216,68,19,.5); }
+  .btn-ghost {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: transparent;
+    color: rgba(255,255,255,.85);
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 1rem;
+    padding: 13px 28px;
+    border-radius: 100px;
+    border: 1.5px solid rgba(255,255,255,.25);
+    cursor: pointer;
+    transition: border-color .2s, color .2s, background .2s;
+  }
+  .btn-ghost:hover { border-color: rgba(255,255,255,.6); background: rgba(255,255,255,.07); color: #fff; }
+
+  /* hero stats strip */
+  .hero-stats {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    z-index: 3;
+    background: rgba(255,255,255,.06);
+    border-top: 1px solid rgba(255,255,255,.1);
+    backdrop-filter: blur(8px);
+  }
+  .hero-stats .inner {
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    flex-wrap: wrap;
+  }
+  .stat-item {
+    flex: 1;
+    min-width: 160px;
+    max-width: 260px;
+    padding: 24px 28px;
+    text-align: center;
+    border-right: 1px solid rgba(255,255,255,.08);
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-num {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--brand);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .stat-label { font-size: .8rem; color: rgba(255,255,255,.55); letter-spacing: .04em; font-weight: 500; }
+
+  /* ── SECTION HEADINGS ───────────────────────────────────────── */
+  .section-label {
+    font-size: .75rem;
+    font-weight: 700;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--brand);
+    margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 700;
+    color: var(--earth);
+    line-height: 1.2;
+    margin-bottom: 20px;
+  }
+  .section-intro {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    max-width: 600px;
+    font-weight: 300;
+    line-height: 1.7;
+  }
+  .section-head { margin-bottom: 56px; }
+  .section-head.centered { text-align: center; }
+  .section-head.centered .section-intro { margin: 0 auto; }
+
+  /* ── SERVICES ───────────────────────────────────────────────── */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 28px;
+  }
+  .service-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 40px 36px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow .3s, transform .3s;
+  }
+  .service-card:hover { box-shadow: var(--shadow-md); transform: translateY(-4px); }
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--brand) 0%, var(--brand-light) 100%);
+  }
+  .service-icon {
+    width: 52px; height: 52px;
+    background: rgba(216,68,19,.1);
+    border-radius: var(--radius-md);
+    display: grid;
+    place-items: center;
+    margin-bottom: 24px;
+    font-size: 1.5rem;
+  }
+  .service-kicker {
+    font-size: .72rem;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--brand);
+    margin-bottom: 10px;
+  }
+  .service-card h3 {
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--earth);
+    margin-bottom: 14px;
+    line-height: 1.3;
+  }
+  .service-card p { font-size: .95rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 20px; }
+  .check-list { display: flex; flex-direction: column; gap: 8px; }
+  .check-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: .88rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+  .check-list li::before {
+    content: '';
+    flex-shrink: 0;
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    background: rgba(216,68,19,.12);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23D84413' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
+    background-size: 11px;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-top: 2px;
+  }
+
+  /* ── HOW IT WORKS ───────────────────────────────────────────── */
+  .how-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0;
+  }
+  .how-step {
+    padding: 36px 28px;
+    text-align: center;
+    border-right: 1px solid var(--border);
+  }
+  .how-step:last-child { border-right: none; }
+  .step-num {
+    width: 44px; height: 44px;
+    background: var(--brand);
+    color: #fff;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.1rem;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    margin: 0 auto 20px;
+  }
+  .how-step h4 {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    color: var(--earth);
+    margin-bottom: 10px;
+  }
+  .how-step p { font-size: .88rem; color: var(--text-muted); }
+
+  /* ── PRICING ────────────────────────────────────────────────── */
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    align-items: start;
+  }
+  .pricing-card {
+    background: var(--card-bg);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 36px 32px;
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow .3s;
+  }
+  .pricing-card:hover { box-shadow: var(--shadow-md); }
+  .pricing-card.featured {
+    border-color: var(--brand);
+    box-shadow: 0 0 0 3px rgba(216,68,19,.1), var(--shadow-md);
+  }
+  .pricing-badge {
+    display: inline-block;
+    background: var(--brand);
+    color: #fff;
+    font-size: .7rem;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 100px;
+    margin-bottom: 20px;
+  }
+  .pricing-card h3 {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    color: var(--earth);
+    margin-bottom: 14px;
+  }
+  .pricing-card p { font-size: .9rem; color: var(--text-muted); line-height: 1.65; margin-bottom: 20px; }
+
+  /* ── TESTIMONIALS ───────────────────────────────────────────── */
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+  }
+  .testimonial-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 32px 28px;
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    transition: box-shadow .3s;
+  }
+  .testimonial-card:hover { box-shadow: var(--shadow-md); }
+  .stars { color: var(--brand); font-size: 1rem; letter-spacing: 2px; }
+  .testimonial-card blockquote {
+    font-size: .95rem;
+    color: var(--text);
+    font-style: italic;
+    line-height: 1.75;
+    flex: 1;
+  }
+  .testimonial-author {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding-top: 12px;
+    border-top: 1px solid var(--border);
+  }
+  .author-name { font-weight: 600; font-size: .9rem; color: var(--earth); }
+  .author-title { font-size: .82rem; color: var(--text-muted); }
+
+  /* ── ABOUT ──────────────────────────────────────────────────── */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 420px;
+    gap: 72px;
+    align-items: start;
+  }
+  .about-prose { font-size: 1rem; color: var(--text-muted); line-height: 1.8; }
+  .about-prose p + p { margin-top: 18px; }
+  .about-prose strong { color: var(--earth); font-weight: 600; }
+  .principles-card {
+    background: var(--card-bg);
+    border: 1.5px solid var(--brand-light);
+    border-radius: var(--radius-lg);
+    padding: 36px 32px;
+    box-shadow: var(--shadow-sm);
+    position: sticky;
+    top: calc(var(--header-h) + 24px);
+  }
+  .principles-card h3 {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    color: var(--earth);
+    margin-bottom: 24px;
+  }
+  .principle-item {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .principle-item:last-child { border-bottom: none; }
+  .principle-dot {
+    width: 36px; height: 36px;
+    flex-shrink: 0;
+    background: rgba(216,68,19,.1);
+    border-radius: var(--radius-sm);
+    display: grid;
+    place-items: center;
+    font-size: 1.1rem;
+    margin-top: 2px;
+  }
+  .principle-item strong { display: block; font-size: .95rem; color: var(--earth); font-weight: 600; margin-bottom: 3px; }
+  .principle-item span { font-size: .85rem; color: var(--text-muted); }
+
+  /* ── CONTACT ────────────────────────────────────────────────── */
+  .contact-wrap {
+    display: grid;
+    grid-template-columns: 360px 1fr;
+    gap: 64px;
+    align-items: start;
+  }
+  .contact-info h3 {
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    color: var(--earth);
+    margin-bottom: 16px;
+    line-height: 1.3;
+  }
+  .contact-info p { font-size: .95rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 32px; }
+  .contact-detail {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: .9rem;
+    color: var(--text);
+  }
+  .contact-detail:first-of-type { border-top: 1px solid var(--border); }
+  .contact-detail a { color: var(--brand); font-weight: 500; }
+  .contact-detail a:hover { text-decoration: underline; }
+  .contact-icon {
+    width: 36px; height: 36px;
+    background: rgba(216,68,19,.1);
+    border-radius: var(--radius-sm);
+    display: grid;
+    place-items: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+
+  /* form */
+  .form { display: flex; flex-direction: column; gap: 20px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .form-group { display: flex; flex-direction: column; gap: 6px; }
+  .form-group label { font-size: .82rem; font-weight: 600; color: var(--earth); letter-spacing: .02em; }
+  .form-group input,
+  .form-group textarea {
+    font-family: var(--font-body);
+    font-size: .95rem;
+    color: var(--text);
+    background: var(--warm-bg);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 12px 16px;
+    outline: none;
+    transition: border-color .2s, box-shadow .2s;
+    resize: none;
+  }
+  .form-group input:focus,
+  .form-group textarea:focus {
+    border-color: var(--brand);
+    box-shadow: 0 0 0 3px rgba(216,68,19,.1);
+  }
+  .form-group input::placeholder,
+  .form-group textarea::placeholder { color: #b0a097; }
+
+  /* ── FOOTER ─────────────────────────────────────────────────── */
+  .footer {
+    background: var(--earth);
+    color: rgba(255,255,255,.6);
+    padding: 56px 0 36px;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 48px;
+  }
+  .footer-brand .brand-logo { height: 40px; filter: brightness(0) invert(1); margin-bottom: 16px; opacity: .9; }
+  .footer-brand p { font-size: .88rem; line-height: 1.7; }
+  .footer h4 {
+    font-size: .78rem;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,.9);
+    margin-bottom: 20px;
+  }
+  .footer-links { display: flex; flex-direction: column; gap: 10px; }
+  .footer-links a { font-size: .9rem; color: rgba(255,255,255,.55); transition: color .2s; }
+  .footer-links a:hover { color: var(--brand-light); }
+  .footer-contact { display: flex; flex-direction: column; gap: 10px; }
+  .footer-contact a { font-size: .9rem; color: rgba(255,255,255,.55); transition: color .2s; }
+  .footer-contact a:hover { color: var(--brand-light); }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,.08);
+    padding-top: 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: .82rem;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  /* ── ANIMATIONS ─────────────────────────────────────────────── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── MOBILE ─────────────────────────────────────────────────── */
+  @media (max-width: 900px) {
+    .about-grid { grid-template-columns: 1fr; }
+    .principles-card { position: static; }
+    .contact-wrap { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 768px) {
+    .mobile-toggle { display: block; }
+    .nav {
+      display: none;
+      flex-direction: column;
+      position: fixed;
+      top: var(--header-h);
+      left: 0; right: 0;
+      background: rgba(253,248,244,.97);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 20px 24px;
+      gap: 4px;
+      box-shadow: 0 8px 32px rgba(0,0,0,.1);
+    }
+    .nav.open { display: flex; }
+    .nav a { width: 100%; text-align: left; padding: 12px 16px; border-radius: var(--radius-sm); }
+    .nav .cta-link { text-align: center; margin-top: 8px; }
+    .hero-stats .inner { flex-direction: column; }
+    .stat-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,.08); max-width: 100%; }
+    .form-row { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .footer-brand { grid-column: 1 / -1; }
+    .footer-bottom { flex-direction: column; text-align: center; }
+    .section { padding: 64px 0; }
+    .how-grid { grid-template-columns: 1fr 1fr; }
+    .how-step { border-right: none; border-bottom: 1px solid var(--border); }
+    .how-step:nth-child(odd) { border-right: 1px solid var(--border); }
+    .how-step:last-child { border-bottom: none; }
+  }
+  @media (max-width: 520px) {
+    .footer-grid { grid-template-columns: 1fr; }
+    .services-grid { grid-template-columns: 1fr; }
+    .how-grid { grid-template-columns: 1fr; }
+    .how-step { border-right: none; }
+    .how-step:nth-child(odd) { border-right: none; }
+  }
+</style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Frontline Reception",
+  "url": "https://frontlinereception.com",
+  "telephone": "(718) 307-4611",
+  "email": "info@frontlinereception.com",
+  "description": "Professional customer service, scheduling, and CRM-backed workflow automation for growing businesses."
+}
+</script>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header class="header" id="site-header">
+  <div class="container inner">
+    <a href="#home">
+      <img src="assets/img/logo.png" alt="Frontline Reception" class="brand-logo">
+    </a>
+    <nav class="nav" id="main-nav">
+      <a href="#home" class="active">Home</a>
+      <a href="#services">Services</a>
+      <a href="#how-it-works">How It Works</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#testimonials">Testimonials</a>
+      <a href="#about">About</a>
+      <a href="#contact" class="cta-link">Get Started</a>
+    </nav>
+    <button class="mobile-toggle" onclick="toggleNav()" aria-label="Toggle navigation">Menu ▾</button>
+  </div>
+</header>
+
+<main>
+
+<!-- HERO -->
+<section id="home" class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <span>📞</span> Professional Back-Office Support
+    </div>
+    <h1 class="hero-title">
+      Your Business, <span>Fully Covered</span>.<br>Your Team, Fully Focused.
+    </h1>
+    <p class="hero-subtitle">
+      We handle your calls, scheduling, and CRM workflows — so you stop managing chaos and start managing growth. Professional, courteous, and fully integrated with your operations.
+    </p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Get a Free Consultation →</a>
+      <a href="#services" class="btn-ghost">See What We Do</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="inner">
+      <div class="stat-item">
+        <div class="stat-num">40h</div>
+        <div class="stat-label">Weekly Coverage Available</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Visibility for Owners</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">2</div>
+        <div class="stat-label">Languages: English & Yiddish</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">CRM</div>
+        <div class="stat-label">Backed Automation</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="section">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-label">What We Do</div>
+      <h2 class="section-title">Every part of your back office, handled.</h2>
+      <p class="section-intro">We embed into your business and take ownership of the operations that slow your team down — so nothing falls through the cracks.</p>
+    </div>
+    <div class="services-grid">
+
+      <div class="service-card reveal">
+        <div class="service-icon">📞</div>
+        <div class="service-kicker">Client Communication</div>
+        <h3>Live Call Answering & Customer Service</h3>
+        <p>Every call is answered promptly, professionally, and with warmth. Your clients feel heard, respected, and taken care of — while your team stays focused on the work that matters.</p>
+        <ul class="check-list">
+          <li>Live call answering & intelligent routing</li>
+          <li>Accurate message-taking, ticketing & follow-ups</li>
+          <li>Bilingual support — English & Yiddish</li>
+        </ul>
+      </div>
+
+      <div class="service-card reveal">
+        <div class="service-icon">📅</div>
+        <div class="service-kicker">Scheduling</div>
+        <h3>Appointments, Confirmations & Calendar Control</h3>
+        <p>We schedule with precision and consistency — following your rules, protecting your calendar, and reducing disruptions from overbooking, no-shows, or miscommunication.</p>
+        <ul class="check-list">
+          <li>Booking, rescheduling & cancellations</li>
+          <li>Confirmations, reminders & prep notifications</li>
+          <li>Daily schedule summaries sent to your team</li>
+        </ul>
+      </div>
+
+      <div class="service-card reveal">
+        <div class="service-icon">⚙️</div>
+        <div class="service-kicker">Systems & Automation</div>
+        <h3>CRM Integration & Workflow Automation</h3>
+        <p>We build clear workflow rules so everyone knows what happens next. Our CRM-backed system automates follow-ups, tasks, and communication — with complete transparency for you.</p>
+        <ul class="check-list">
+          <li>Custom workflow rules built around your business</li>
+          <li>Task tracking & team accountability</li>
+          <li>Structured communication between all parties</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how-it-works" class="section section-alt">
+  <div class="container">
+    <div class="section-head centered reveal">
+      <div class="section-label">Our Process</div>
+      <h2 class="section-title">Up and running in days, not weeks.</h2>
+      <p class="section-intro">A simple, structured onboarding that makes us a true extension of your team — without disrupting what's already working.</p>
+    </div>
+    <div class="how-grid">
+      <div class="how-step reveal">
+        <div class="step-num">1</div>
+        <h4>Discovery Call</h4>
+        <p>We learn your business — call volume, priorities, booking rules, and how you communicate with clients.</p>
+      </div>
+      <div class="how-step reveal">
+        <div class="step-num">2</div>
+        <h4>Build Your Playbook</h4>
+        <p>We document your workflow rules, set up CRM integrations, and define exactly what triggers what.</p>
+      </div>
+      <div class="how-step reveal">
+        <div class="step-num">3</div>
+        <h4>Go Live</h4>
+        <p>Our team begins handling calls and scheduling while syncing with yours in real time.</p>
+      </div>
+      <div class="how-step reveal">
+        <div class="step-num">4</div>
+        <h4>Optimize Together</h4>
+        <p>We refine workflows as your business evolves — you always have full visibility and control.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing" class="section">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-label">Pricing</div>
+      <h2 class="section-title">Simple, transparent, and tailored to you.</h2>
+      <p class="section-intro">No confusing tiers. No hidden fees. A flat weekly rate for dedicated, consistent support — customized to fit your operation.</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="pricing-card reveal">
+        <h3>Flat Weekly Pricing</h3>
+        <p>Pay a simple weekly rate for your dedicated support — no surprises, no nickel-and-diming. Full transparency from day one.</p>
+        <ul class="check-list">
+          <li>Transparent weekly rates</li>
+          <li>No hidden setup fees</li>
+          <li>Cancel or adjust anytime</li>
+        </ul>
+      </div>
+      <div class="pricing-card featured reveal">
+        <div class="pricing-badge">Most Popular</div>
+        <h3>Dedicated Weekly Coverage</h3>
+        <p>Our standard package gives you a full 40 hours of focused support each week — enough to handle the volume of most growing businesses.</p>
+        <ul class="check-list">
+          <li>Monday–Thursday, 9 AM – 6 PM</li>
+          <li>Friday, 9 AM – 1 PM</li>
+          <li>Consistent, reliable coverage</li>
+        </ul>
+      </div>
+      <div class="pricing-card reveal">
+        <h3>Fully Customizable Plans</h3>
+        <p>Need extended hours, multiple reps, or coverage split across parts of the day? We build plans that match how your business actually runs.</p>
+        <ul class="check-list">
+          <li>Custom rep count & hours</li>
+          <li>Specialized coverage windows</li>
+          <li>Multi-department support available</li>
+        </ul>
+      </div>
+    </div>
+    <div style="text-align:center; margin-top:40px;" class="reveal">
+      <a href="#contact" class="btn-primary">Talk to Us About Pricing →</a>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials" class="section section-alt">
+  <div class="container">
+    <div class="section-head centered reveal">
+      <div class="section-label">Testimonials</div>
+      <h2 class="section-title">What our clients say.</h2>
+      <p class="section-intro">Real businesses, real results — from owners who wanted their operations to run as hard as they do.</p>
+    </div>
+    <div class="testimonials-grid">
+
+      <div class="testimonial-card reveal">
+        <div class="stars">★★★★★</div>
+        <blockquote>"Our calls are handled with professionalism and sensitivity, our appointments flow smoothly, and our staff can focus fully on client care. They brought calm and structure."</blockquote>
+        <div class="testimonial-author">
+          <span class="author-name">Leah Rokeach</span>
+          <span class="author-title">Salon Owner</span>
+        </div>
+      </div>
+
+      <div class="testimonial-card reveal">
+        <div class="stars">★★★★★</div>
+        <blockquote>"They learned how our business operates and built clear workflows around it. We feel supported without ever losing visibility or control. A real partner, not just a service."</blockquote>
+        <div class="testimonial-author">
+          <span class="author-name">Yaakov Shweid</span>
+          <span class="author-title">Service Business Owner</span>
+        </div>
+      </div>
+
+      <div class="testimonial-card reveal">
+        <div class="stars">★★★★★</div>
+        <blockquote>"Clients immediately noticed the difference. Fewer scheduling issues, better follow-through, and a team that feels far less overwhelmed. Communication is smoother across the board."</blockquote>
+        <div class="testimonial-author">
+          <span class="author-name">Rifka Klein</span>
+          <span class="author-title">Operations Manager</span>
+        </div>
+      </div>
+
+      <div class="testimonial-card reveal">
+        <div class="stars">★★★★★</div>
+        <blockquote>"We have full access to everything, clear communication at all times, and confidence that our customers are treated with respect. It truly feels like an extension of our office."</blockquote>
+        <div class="testimonial-author">
+          <span class="author-name">Menachem Green</span>
+          <span class="author-title">Small Business Owner</span>
+        </div>
+      </div>
+
+      <div class="testimonial-card reveal">
+        <div class="stars">★★★★★</div>
+        <blockquote>"The onboarding was thoughtful, the systems are solid, and the long-term impact has been increased efficiency with far less stress. One of our best operational decisions."</blockquote>
+        <div class="testimonial-author">
+          <span class="author-name">Chaim Stern</span>
+          <span class="author-title">Professional Services Firm</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="section">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-label">About Us</div>
+      <h2 class="section-title">We're not a call center.<br>We're your operations partner.</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-prose reveal">
+        <p>Frontline Reception was built to help growing businesses bring structure, professionalism, and calm to their daily operations.</p>
+        <p>As businesses grow, the volume of calls, appointments, changes, and customer questions grows with them. When these responsibilities pile onto already-busy in-house teams, things become overwhelming — important details get missed, schedules become chaotic, and the client experience suffers, even when everyone is working hard.</p>
+        <p><strong>That is where we come in.</strong></p>
+        <p>We take the time to truly understand how your business runs. We learn your policies, your booking rules, your priorities, and the standards you want your customers to experience. From there, we build clear systems that allow our team to act as a seamless extension of yours.</p>
+        <p>We believe professional, courteous communication matters — not just for first impressions, but for long-term trust. Every call is answered calmly and respectfully. Every appointment is scheduled with intention. Every interaction is handled with the understanding that we are representing a business you have worked hard to build.</p>
+        <p>Equally important: <strong>you never feel disconnected from your own operations.</strong> You maintain full visibility into calls, schedules, tasks, and communication at all times. Our role is to support and strengthen your business — not to take control away from you.</p>
+      </div>
+      <div class="reveal">
+        <div class="principles-card">
+          <h3>Our Principles: The 3 R's</h3>
+          <div class="principle-item">
+            <div class="principle-dot">🤝</div>
+            <div>
+              <strong>Responsible</strong>
+              <span>We take ownership of every task and follow through, every time.</span>
+            </div>
+          </div>
+          <div class="principle-item">
+            <div class="principle-dot">💼</div>
+            <div>
+              <strong>Respectful</strong>
+              <span>We treat every client interaction with professionalism and genuine care.</span>
+            </div>
+          </div>
+          <div class="principle-item">
+            <div class="principle-dot">💡</div>
+            <div>
+              <strong>Resourceful</strong>
+              <span>We find solutions and assist thoroughly — without hand-holding required.</span>
+            </div>
+          </div>
+          <div style="margin-top:24px; padding-top:24px; border-top:1px solid var(--border);">
+            <p style="font-size:.88rem; color:var(--text-muted); line-height:1.7;">Bilingual support available in English and Yiddish, ensuring clear communication with every client.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="section section-alt">
+  <div class="container">
+    <div class="contact-wrap">
+      <div class="contact-info reveal">
+        <div class="section-label">Contact Us</div>
+        <h3>Let's talk about what your business needs.</h3>
+        <p>Tell us about your call volume, scheduling challenges, or CRM needs and we'll put together a plan tailored to your operation. No pressure, no obligations.</p>
+        <div class="contact-detail">
+          <div class="contact-icon">📞</div>
+          <div><a href="tel:+17183074611">(718) 307-4611</a></div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-icon">✉️</div>
+          <div><a href="mailto:info@frontlinereception.com">info@frontlinereception.com</a></div>
+        </div>
+      </div>
+
+      <form class="form reveal" method="POST" action="https://formsubmit.co/thefrontlinereception@gmail.com">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_subject" value="New inquiry from FrontlineReception website">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name">Your Name</label>
+            <input id="name" name="name" placeholder="Full name" required>
+          </div>
+          <div class="form-group">
+            <label for="company">Company</label>
+            <input id="company" name="company" placeholder="Company name">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input id="email" type="email" name="email" placeholder="you@company.com" required>
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input id="phone" name="phone" placeholder="+1 (___) ___-____">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="message">How can we help?</label>
+          <textarea id="message" name="message" rows="5" placeholder="Tell us about your call volume, scheduling needs, CRM setup, or anything else we should know." required></textarea>
+        </div>
+        <button class="btn-primary" type="submit" style="align-self:flex-start;">Send Message →</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="assets/img/logo.png" alt="Frontline Reception" class="brand-logo">
+        <p>Professional customer service, scheduling, and workflow automation for growing businesses. Your operations, handled with care.</p>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <nav class="footer-links">
+          <a href="#services">Services</a>
+          <a href="#how-it-works">How It Works</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#testimonials">Testimonials</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+      <div>
+        <h4>Get In Touch</h4>
+        <div class="footer-contact">
+          <a href="tel:+17183074611">(718) 307-4611</a>
+          <a href="mailto:info@frontlinereception.com">info@frontlinereception.com</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© Frontline Reception — All rights reserved.</span>
+      <span>Professional service · Clear systems · Full transparency</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Header shadow on scroll
+  const header = document.getElementById('site-header');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 10);
+  }, { passive: true });
+
+  // Mobile nav toggle
+  function toggleNav() {
+    document.getElementById('main-nav').classList.toggle('open');
+  }
+  document.addEventListener('click', e => {
+    if (e.target.matches('#main-nav a')) {
+      document.getElementById('main-nav').classList.remove('open');
+    }
+  });
+
+  // Active nav link on scroll + scroll reveal
+  document.addEventListener('DOMContentLoaded', () => {
+    const links = [...document.querySelectorAll('#main-nav a[href^="#"]')];
+    const map = new Map(links.map(a => [a.getAttribute('href'), a]));
+    const navObs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const link = map.get(`#${entry.target.id}`);
+        if (!link) return;
+        if (entry.isIntersecting) {
+          links.forEach(l => l.classList.remove('active'));
+          link.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-72px 0px -60% 0px', threshold: 0.01 });
+    document.querySelectorAll('section[id]').forEach(s => navObs.observe(s));
+
+    // Scroll reveal with staggered delay per row
+    const revealObs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach((el, i) => {
+      el.style.transitionDelay = `${(i % 4) * 80}ms`;
+      revealObs.observe(el);
+    });
+  });
+</script>
+</body>
+</html>
