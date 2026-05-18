@@ -1,0 +1,1324 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Frontline Reception · Professional Customer Service & Workflow Automation</title>
+<meta name="description" content="Professional call handling, scheduling, and CRM-backed workflow automation—so your team can focus on growth with full visibility and control.">
+<meta property="og:title" content="Frontline Reception · Professional Customer Service & Workflow Automation">
+<meta property="og:description" content="Professional call handling, scheduling, and CRM-backed workflow automation—so your team can focus on growth.">
+<meta property="og:type" content="website">
+<link rel="icon" href="assets/img/og-placeholder.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* ─────────────────────────────────────────────
+   TOKENS
+───────────────────────────────────────────── */
+:root {
+  /* Palette — warm, soft, approachable */
+  --cream:        #FAF7F2;
+  --linen:        #F2EDE4;
+  --linen-deep:   #E8DFD0;
+  --terra:        #C4622D;   /* softer, warmer terracotta */
+  --terra-light:  #E8927A;
+  --terra-pale:   #F5DDD4;
+  --brown:        #5C3A1E;
+  --brown-mid:    #7A5035;
+  --brown-soft:   #A07858;
+  --text:         #3A2510;
+  --text-muted:   #7A6254;
+  --text-light:   #A89080;
+  --white:        #FFFFFF;
+  --border:       #DDD0C0;
+  --border-light: #EDE5D8;
+
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body:    'Jost', system-ui, sans-serif;
+
+  --r-sm:  6px;
+  --r-md: 14px;
+  --r-lg: 22px;
+  --r-xl: 32px;
+
+  --shadow-xs: 0 1px 3px rgba(92,58,30,.06);
+  --shadow-sm: 0 2px 12px rgba(92,58,30,.07), 0 1px 3px rgba(92,58,30,.05);
+  --shadow-md: 0 6px 24px rgba(92,58,30,.09), 0 2px 8px rgba(92,58,30,.05);
+  --shadow-lg: 0 16px 48px rgba(92,58,30,.10), 0 4px 16px rgba(92,58,30,.06);
+
+  --max-w: 1140px;
+  --hh: 80px;
+}
+
+/* ─────────────────────────────────────────────
+   RESET
+───────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  background: var(--cream);
+  color: var(--text);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+
+/* ─────────────────────────────────────────────
+   UTILITIES
+───────────────────────────────────────────── */
+.wrap { max-width: var(--max-w); margin: 0 auto; padding: 0 32px; }
+.section { padding: 100px 0; }
+.section-linen { background: var(--linen); }
+
+/* reveal animation */
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity .7s ease, transform .7s ease;
+}
+.reveal.in { opacity: 1; transform: translateY(0); }
+
+/* ─────────────────────────────────────────────
+   HEADER
+───────────────────────────────────────────── */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  height: var(--hh);
+  background: rgba(250,247,242,.94);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border-light);
+  transition: box-shadow .3s;
+}
+.header.scrolled { box-shadow: 0 2px 24px rgba(92,58,30,.08); }
+.header-inner {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+.logo img { width: 200px; height: auto; }
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.nav a {
+  font-size: .82rem;
+  font-weight: 500;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  padding: 7px 15px;
+  border-radius: 100px;
+  transition: color .2s, background .2s;
+}
+.nav a:hover, .nav a.active { color: var(--terra); background: var(--terra-pale); }
+.nav .btn-nav {
+  background: var(--terra);
+  color: var(--white);
+  padding: 9px 22px;
+  border-radius: 100px;
+  font-weight: 600;
+  font-size: .82rem;
+  letter-spacing: .06em;
+  transition: background .2s, transform .15s;
+  margin-left: 8px;
+}
+.nav .btn-nav:hover { background: var(--brown); transform: translateY(-1px); }
+.mob-toggle {
+  display: none;
+  background: none;
+  border: 1.5px solid var(--border);
+  border-radius: var(--r-sm);
+  padding: 8px 14px;
+  font-family: var(--font-body);
+  font-size: .82rem;
+  letter-spacing: .04em;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+/* ─────────────────────────────────────────────
+   HERO
+───────────────────────────────────────────── */
+.hero {
+  min-height: calc(100vh - var(--hh));
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 0;
+  overflow: hidden;
+  position: relative;
+  background: var(--cream);
+}
+
+/* left panel */
+.hero-left {
+  padding: 80px 64px 80px 0;
+  position: relative;
+  z-index: 2;
+  animation: fadeLeft .9s ease both;
+}
+.hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--terra-pale);
+  color: var(--terra);
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  padding: 6px 16px;
+  border-radius: 100px;
+  margin-bottom: 28px;
+  border: 1px solid rgba(196,98,45,.2);
+}
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(42px, 5.5vw, 72px);
+  font-weight: 600;
+  color: var(--brown);
+  line-height: 1.1;
+  margin-bottom: 24px;
+}
+.hero-title em {
+  font-style: italic;
+  color: var(--terra);
+  font-weight: 500;
+}
+.hero-subtitle {
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  font-weight: 300;
+  line-height: 1.8;
+  max-width: 460px;
+  margin-bottom: 44px;
+}
+.hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--terra);
+  color: var(--white);
+  font-family: var(--font-body);
+  font-size: .88rem;
+  font-weight: 600;
+  letter-spacing: .04em;
+  padding: 14px 30px;
+  border-radius: 100px;
+  border: none;
+  cursor: pointer;
+  transition: background .2s, transform .15s, box-shadow .2s;
+  box-shadow: 0 4px 20px rgba(196,98,45,.3);
+}
+.btn-primary:hover { background: var(--brown); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(196,98,45,.35); }
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  color: var(--brown-mid);
+  font-family: var(--font-body);
+  font-size: .88rem;
+  font-weight: 500;
+  letter-spacing: .04em;
+  padding: 13px 26px;
+  border-radius: 100px;
+  border: 1.5px solid var(--border);
+  cursor: pointer;
+  transition: border-color .2s, color .2s, background .2s;
+}
+.btn-secondary:hover { border-color: var(--terra-light); color: var(--terra); background: var(--terra-pale); }
+
+/* trust row */
+.hero-trust {
+  display: flex;
+  gap: 28px;
+  margin-top: 52px;
+  padding-top: 36px;
+  border-top: 1px solid var(--border-light);
+  flex-wrap: wrap;
+}
+.trust-item { display: flex; flex-direction: column; gap: 2px; }
+.trust-num {
+  font-family: var(--font-display);
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: var(--terra);
+  line-height: 1;
+}
+.trust-label { font-size: .75rem; color: var(--text-light); letter-spacing: .04em; font-weight: 500; }
+
+/* right panel — decorative warm art piece */
+.hero-right {
+  position: relative;
+  height: 100%;
+  min-height: calc(100vh - var(--hh));
+  overflow: hidden;
+  animation: fadeRight .9s ease both;
+}
+.hero-art {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 55% at 60% 35%, rgba(232,146,122,.35) 0%, transparent 55%),
+    radial-gradient(ellipse 80% 70% at 30% 75%, rgba(196,98,45,.18) 0%, transparent 55%),
+    linear-gradient(160deg, #F2EDE4 0%, #EBE0D2 40%, #DCCFBB 100%);
+}
+/* soft organic shape */
+.hero-art::before {
+  content: '';
+  position: absolute;
+  width: 70%;
+  height: 70%;
+  top: 15%;
+  left: 10%;
+  background: radial-gradient(ellipse at center, rgba(196,98,45,.13) 0%, transparent 70%);
+  border-radius: 60% 40% 55% 45% / 45% 55% 45% 55%;
+  animation: morphBlob 10s ease-in-out infinite alternate;
+}
+.hero-art::after {
+  content: '';
+  position: absolute;
+  width: 60%;
+  height: 60%;
+  bottom: 5%;
+  right: 5%;
+  background: radial-gradient(ellipse at center, rgba(232,146,122,.12) 0%, transparent 70%);
+  border-radius: 40% 60% 45% 55% / 55% 45% 55% 45%;
+  animation: morphBlob 14s ease-in-out infinite alternate-reverse;
+}
+/* floating card in hero */
+.hero-card {
+  position: absolute;
+  z-index: 3;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(250,247,242,.88);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,.7);
+  border-radius: var(--r-xl);
+  padding: 40px 44px;
+  box-shadow: var(--shadow-lg);
+  width: min(380px, 85%);
+  text-align: center;
+}
+.hero-card-icon {
+  width: 60px; height: 60px;
+  background: var(--terra-pale);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  margin: 0 auto 18px;
+  font-size: 1.6rem;
+}
+.hero-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--brown);
+  margin-bottom: 12px;
+}
+.hero-card p {
+  font-size: .88rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+.hero-card-pills { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+.pill {
+  background: var(--terra-pale);
+  color: var(--terra);
+  font-size: .73rem;
+  font-weight: 600;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  padding: 5px 13px;
+  border-radius: 100px;
+  border: 1px solid rgba(196,98,45,.15);
+}
+
+/* ─────────────────────────────────────────────
+   SECTION HEADER STYLE
+───────────────────────────────────────────── */
+.sh { margin-bottom: 60px; }
+.sh.centered { text-align: center; }
+.sh.centered .sh-intro { margin: 0 auto; }
+.sh-label {
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--terra);
+  margin-bottom: 12px;
+}
+.sh-title {
+  font-family: var(--font-display);
+  font-size: clamp(30px, 4vw, 48px);
+  font-weight: 600;
+  color: var(--brown);
+  line-height: 1.15;
+  margin-bottom: 18px;
+}
+.sh-title em { font-style: italic; font-weight: 500; color: var(--terra); }
+.sh-intro {
+  font-size: 1rem;
+  color: var(--text-muted);
+  font-weight: 300;
+  max-width: 560px;
+  line-height: 1.8;
+}
+
+/* ─────────────────────────────────────────────
+   SERVICES
+───────────────────────────────────────────── */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.svc {
+  background: var(--white);
+  border: 1px solid var(--border-light);
+  border-radius: var(--r-xl);
+  padding: 44px 36px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow .3s, transform .3s;
+}
+.svc:hover { box-shadow: var(--shadow-lg); transform: translateY(-5px); }
+.svc-accent {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--terra) 0%, var(--terra-light) 100%);
+  border-radius: var(--r-xl) var(--r-xl) 0 0;
+}
+.svc-icon {
+  width: 56px; height: 56px;
+  background: var(--terra-pale);
+  border-radius: var(--r-md);
+  display: grid;
+  place-items: center;
+  font-size: 1.6rem;
+  margin-bottom: 24px;
+}
+.svc-kicker {
+  font-size: .68rem;
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--terra);
+  margin-bottom: 10px;
+}
+.svc h3 {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--brown);
+  margin-bottom: 14px;
+  line-height: 1.25;
+}
+.svc p {
+  font-size: .9rem;
+  color: var(--text-muted);
+  line-height: 1.75;
+  margin-bottom: 22px;
+}
+.tick-list { display: flex; flex-direction: column; gap: 10px; }
+.tick-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: .85rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+.tick-list li::before {
+  content: '';
+  flex-shrink: 0;
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  background: var(--terra-pale)
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23C4622D' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E")
+    center/12px no-repeat;
+  margin-top: 1px;
+}
+
+/* ─────────────────────────────────────────────
+   HOW IT WORKS — horizontal timeline
+───────────────────────────────────────────── */
+.how-track {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  position: relative;
+  counter-reset: step;
+}
+.how-track::before {
+  content: '';
+  position: absolute;
+  top: 28px;
+  left: calc(12.5%);
+  right: calc(12.5%);
+  height: 1px;
+  background: linear-gradient(90deg, var(--terra-pale), var(--terra-light), var(--terra-pale));
+}
+.how-step {
+  text-align: center;
+  padding: 0 20px;
+  position: relative;
+}
+.how-num {
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  background: var(--white);
+  border: 2px solid var(--terra-light);
+  color: var(--terra);
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 700;
+  display: grid;
+  place-items: center;
+  margin: 0 auto 24px;
+  position: relative;
+  z-index: 2;
+  box-shadow: 0 0 0 6px var(--cream);
+}
+.how-step h4 {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--brown);
+  margin-bottom: 10px;
+}
+.how-step p { font-size: .85rem; color: var(--text-muted); line-height: 1.7; }
+
+/* ─────────────────────────────────────────────
+   PRICING
+───────────────────────────────────────────── */
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+.prc {
+  background: var(--white);
+  border: 1px solid var(--border-light);
+  border-radius: var(--r-xl);
+  padding: 40px 34px;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow .3s, transform .25s;
+}
+.prc:hover { box-shadow: var(--shadow-lg); transform: translateY(-4px); }
+.prc.featured {
+  background: var(--brown);
+  border-color: var(--brown);
+  color: var(--white);
+}
+.prc.featured .sh-label-sm { color: var(--terra-light); }
+.prc.featured h3 { color: var(--white); }
+.prc.featured p { color: rgba(255,255,255,.72); }
+.prc.featured .tick-list li { color: rgba(255,255,255,.8); }
+.prc.featured .tick-list li::before {
+  background: rgba(255,255,255,.12)
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23E8927A' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E")
+    center/12px no-repeat;
+}
+.badge-featured {
+  display: inline-block;
+  background: var(--terra);
+  color: var(--white);
+  font-size: .68rem;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  padding: 4px 13px;
+  border-radius: 100px;
+  margin-bottom: 20px;
+}
+.sh-label-sm {
+  font-size: .68rem;
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--terra);
+  margin-bottom: 10px;
+}
+.prc h3 {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--brown);
+  margin-bottom: 12px;
+}
+.prc p { font-size: .88rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 22px; }
+
+/* ─────────────────────────────────────────────
+   TESTIMONIALS
+───────────────────────────────────────────── */
+.testi-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.testi {
+  background: var(--white);
+  border: 1px solid var(--border-light);
+  border-radius: var(--r-xl);
+  padding: 34px 30px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  transition: box-shadow .3s;
+}
+.testi:nth-child(2) { margin-top: 24px; }
+.testi:nth-child(4) { margin-top: -24px; }
+.testi:hover { box-shadow: var(--shadow-lg); }
+.testi-stars { color: var(--terra); font-size: .95rem; letter-spacing: 3px; }
+.testi blockquote {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-style: italic;
+  color: var(--brown);
+  line-height: 1.7;
+  flex: 1;
+}
+.testi-author {
+  padding-top: 16px;
+  border-top: 1px solid var(--border-light);
+}
+.testi-name { font-weight: 600; font-size: .88rem; color: var(--brown); }
+.testi-role { font-size: .8rem; color: var(--text-light); margin-top: 2px; }
+
+/* ─────────────────────────────────────────────
+   ABOUT
+───────────────────────────────────────────── */
+.about-layout {
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: 80px;
+  align-items: start;
+}
+.about-prose { font-size: .97rem; color: var(--text-muted); line-height: 1.85; }
+.about-prose p + p { margin-top: 18px; }
+.about-prose strong { color: var(--brown); font-weight: 600; }
+.about-aside {
+  position: sticky;
+  top: calc(var(--hh) + 24px);
+}
+.principles-box {
+  background: var(--white);
+  border: 1px solid var(--border-light);
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+.principles-top {
+  background: linear-gradient(135deg, var(--terra) 0%, var(--brown) 100%);
+  padding: 32px 32px 28px;
+}
+.principles-top h3 {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 6px;
+}
+.principles-top p { font-size: .82rem; color: rgba(255,255,255,.7); }
+.principles-body { padding: 8px 0; }
+.p-row {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  padding: 20px 28px;
+  border-bottom: 1px solid var(--border-light);
+  transition: background .2s;
+}
+.p-row:last-child { border-bottom: none; }
+.p-row:hover { background: var(--cream); }
+.p-icon {
+  width: 38px; height: 38px;
+  flex-shrink: 0;
+  background: var(--terra-pale);
+  border-radius: var(--r-sm);
+  display: grid;
+  place-items: center;
+  font-size: 1.1rem;
+  margin-top: 1px;
+}
+.p-row strong { display: block; font-size: .9rem; color: var(--brown); font-weight: 600; margin-bottom: 3px; }
+.p-row span { font-size: .82rem; color: var(--text-muted); line-height: 1.5; }
+.bilingual-note {
+  margin-top: 20px;
+  background: var(--terra-pale);
+  border: 1px solid rgba(196,98,45,.2);
+  border-radius: var(--r-lg);
+  padding: 18px 22px;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+.bilingual-note span { font-size: .85rem; color: var(--terra); line-height: 1.6; }
+
+/* ─────────────────────────────────────────────
+   CONTACT
+───────────────────────────────────────────── */
+.contact-layout {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  gap: 72px;
+  align-items: start;
+}
+.contact-sidebar h3 {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--brown);
+  line-height: 1.25;
+  margin-bottom: 16px;
+}
+.contact-sidebar p { font-size: .9rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 36px; }
+.contact-item {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--border-light);
+}
+.contact-item:first-of-type { border-top: 1px solid var(--border-light); }
+.cicon {
+  width: 40px; height: 40px;
+  background: var(--terra-pale);
+  border-radius: var(--r-sm);
+  display: grid;
+  place-items: center;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+.contact-item a { font-size: .9rem; color: var(--terra); font-weight: 500; }
+.contact-item a:hover { text-decoration: underline; }
+
+/* form */
+.form { display: flex; flex-direction: column; gap: 22px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+.fg { display: flex; flex-direction: column; gap: 7px; }
+.fg label {
+  font-size: .76rem;
+  font-weight: 600;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--brown-soft);
+}
+.fg input, .fg textarea {
+  font-family: var(--font-body);
+  font-size: .92rem;
+  color: var(--text);
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: var(--r-md);
+  padding: 13px 18px;
+  outline: none;
+  transition: border-color .2s, box-shadow .2s;
+  resize: none;
+}
+.fg input:focus, .fg textarea:focus {
+  border-color: var(--terra-light);
+  box-shadow: 0 0 0 3px rgba(196,98,45,.08);
+}
+.fg input::placeholder, .fg textarea::placeholder { color: #C4B0A0; }
+
+/* ─────────────────────────────────────────────
+   FOOTER
+───────────────────────────────────────────── */
+.footer {
+  background: var(--brown);
+  color: rgba(255,255,255,.6);
+  padding: 64px 0 36px;
+}
+.footer-top {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 48px;
+  margin-bottom: 52px;
+}
+.footer-brand img {
+  width: 180px;
+  height: auto;
+  filter: brightness(0) invert(1);
+  opacity: .9;
+  margin-bottom: 18px;
+}
+.footer-brand p { font-size: .87rem; line-height: 1.75; max-width: 280px; }
+.footer h5 {
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.9);
+  margin-bottom: 20px;
+}
+.footer-links { display: flex; flex-direction: column; gap: 10px; }
+.footer-links a { font-size: .88rem; color: rgba(255,255,255,.55); transition: color .2s; }
+.footer-links a:hover { color: var(--terra-light); }
+.footer-contact-list { display: flex; flex-direction: column; gap: 10px; }
+.footer-contact-list a { font-size: .88rem; color: rgba(255,255,255,.55); transition: color .2s; }
+.footer-contact-list a:hover { color: var(--terra-light); }
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,.08);
+  padding-top: 28px;
+  display: flex;
+  justify-content: space-between;
+  font-size: .8rem;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* ─────────────────────────────────────────────
+   KEYFRAMES
+───────────────────────────────────────────── */
+@keyframes fadeLeft {
+  from { opacity: 0; transform: translateX(-32px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes fadeRight {
+  from { opacity: 0; transform: translateX(32px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes morphBlob {
+  0%   { border-radius: 60% 40% 55% 45% / 45% 55% 45% 55%; }
+  50%  { border-radius: 40% 60% 45% 55% / 55% 45% 60% 40%; }
+  100% { border-radius: 55% 45% 60% 40% / 40% 60% 45% 55%; }
+}
+
+/* ─────────────────────────────────────────────
+   RESPONSIVE
+───────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .hero { grid-template-columns: 1fr; min-height: auto; }
+  .hero-left { padding: 60px 0 40px; }
+  .hero-right { min-height: 420px; }
+  .services-grid { grid-template-columns: 1fr 1fr; }
+  .pricing-grid { grid-template-columns: 1fr 1fr; }
+  .testi-grid { grid-template-columns: 1fr 1fr; }
+  .testi:nth-child(2), .testi:nth-child(4) { margin-top: 0; }
+  .about-layout { grid-template-columns: 1fr; }
+  .about-aside { position: static; }
+  .contact-layout { grid-template-columns: 1fr; }
+}
+@media (max-width: 768px) {
+  .mob-toggle { display: block; }
+  .nav {
+    display: none;
+    flex-direction: column;
+    position: fixed;
+    top: var(--hh);
+    left: 0; right: 0;
+    background: rgba(250,247,242,.97);
+    backdrop-filter: blur(14px);
+    padding: 16px 20px 28px;
+    border-bottom: 1px solid var(--border-light);
+    box-shadow: 0 8px 32px rgba(92,58,30,.1);
+    gap: 4px;
+  }
+  .nav.open { display: flex; }
+  .nav a { width: 100%; text-align: left; padding: 12px 16px; border-radius: var(--r-sm); }
+  .nav .btn-nav { text-align: center; margin-left: 0; margin-top: 8px; }
+  .services-grid { grid-template-columns: 1fr; }
+  .how-track { grid-template-columns: 1fr 1fr; }
+  .how-track::before { display: none; }
+  .pricing-grid { grid-template-columns: 1fr; }
+  .testi-grid { grid-template-columns: 1fr; }
+  .testi:nth-child(2), .testi:nth-child(4) { margin-top: 0; }
+  .footer-top { grid-template-columns: 1fr 1fr; }
+  .footer-brand { grid-column: 1 / -1; }
+  .footer-bottom { flex-direction: column; text-align: center; }
+  .form-row { grid-template-columns: 1fr; }
+  .section { padding: 72px 0; }
+}
+@media (max-width: 520px) {
+  .how-track { grid-template-columns: 1fr; }
+  .footer-top { grid-template-columns: 1fr; }
+  .hero-trust { gap: 20px; }
+}
+</style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Frontline Reception",
+  "url": "https://frontlinereception.com",
+  "telephone": "(718) 307-4611",
+  "email": "info@frontlinereception.com",
+  "description": "Professional customer service, scheduling, and CRM-backed workflow automation for growing businesses."
+}
+</script>
+</head>
+
+<body>
+
+<!-- HEADER ─────────────────────────────────── -->
+<header class="header" id="hdr">
+  <div class="wrap header-inner">
+    <a href="#home" class="logo">
+      <img src="assets/img/logo.png" alt="Frontline Reception">
+    </a>
+    <nav class="nav" id="nav">
+      <a href="#home" class="active">Home</a>
+      <a href="#services">Services</a>
+      <a href="#how-it-works">How It Works</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#testimonials">Testimonials</a>
+      <a href="#about">About</a>
+      <a href="#contact" class="btn-nav">Get Started</a>
+    </nav>
+    <button class="mob-toggle" onclick="toggleNav()" aria-label="Menu">Menu ▾</button>
+  </div>
+</header>
+
+<main>
+
+<!-- HERO ───────────────────────────────────── -->
+<section id="home" class="hero">
+  <div class="wrap hero-left">
+    <div class="hero-tag">✦ Professional Back-Office Support</div>
+    <h1 class="hero-title">
+      Your operations,<br><em>handled with care.</em>
+    </h1>
+    <p class="hero-subtitle">
+      We answer your calls, manage your schedule, and keep your CRM humming — so your team can stop firefighting and start growing.
+    </p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn-primary">Get a Free Consultation →</a>
+      <a href="#services" class="btn-secondary">See Our Services</a>
+    </div>
+    <div class="hero-trust">
+      <div class="trust-item">
+        <span class="trust-num">40h</span>
+        <span class="trust-label">Weekly Coverage</span>
+      </div>
+      <div class="trust-item">
+        <span class="trust-num">100%</span>
+        <span class="trust-label">Owner Visibility</span>
+      </div>
+      <div class="trust-item">
+        <span class="trust-num">2</span>
+        <span class="trust-label">Languages</span>
+      </div>
+      <div class="trust-item">
+        <span class="trust-num">CRM</span>
+        <span class="trust-label">Integrated</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-art"></div>
+    <div class="hero-card">
+      <div class="hero-card-icon">🤝</div>
+      <h3>Your partner, not just a service</h3>
+      <p>We learn how your business runs and build systems around it — so nothing slips and you stay in control.</p>
+      <div class="hero-card-pills">
+        <span class="pill">Call Handling</span>
+        <span class="pill">Scheduling</span>
+        <span class="pill">CRM Automation</span>
+        <span class="pill">Bilingual</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES ────────────────────────────────── -->
+<section id="services" class="section section-linen">
+  <div class="wrap">
+    <div class="sh reveal">
+      <div class="sh-label">What We Do</div>
+      <h2 class="sh-title">Every part of your back office, <em>covered</em>.</h2>
+      <p class="sh-intro">We embed into your operations and take ownership of the tasks that slow your team down — handled consistently, professionally, every day.</p>
+    </div>
+    <div class="services-grid">
+
+      <div class="svc reveal">
+        <div class="svc-accent"></div>
+        <div class="svc-icon">📞</div>
+        <div class="svc-kicker">Client Communication</div>
+        <h3>Live Call Answering & Customer Service</h3>
+        <p>Every call answered promptly and warmly. Your clients feel heard and respected — while your team stays focused on work that matters.</p>
+        <ul class="tick-list">
+          <li>Live call answering & intelligent routing</li>
+          <li>Message-taking, ticketing & follow-ups</li>
+          <li>Bilingual support — English & Yiddish</li>
+        </ul>
+      </div>
+
+      <div class="svc reveal">
+        <div class="svc-accent"></div>
+        <div class="svc-icon">📅</div>
+        <div class="svc-kicker">Scheduling</div>
+        <h3>Appointments, Confirmations & Calendar Control</h3>
+        <p>We schedule with precision — following your rules, protecting your calendar, and reducing no-shows and overbooking.</p>
+        <ul class="tick-list">
+          <li>Booking, rescheduling & cancellations</li>
+          <li>Reminders & confirmation calls</li>
+          <li>Daily schedule summaries to your team</li>
+        </ul>
+      </div>
+
+      <div class="svc reveal">
+        <div class="svc-accent"></div>
+        <div class="svc-icon">⚙️</div>
+        <div class="svc-kicker">Systems & Automation</div>
+        <h3>CRM Integration & Workflow Automation</h3>
+        <p>We build clear rules so everyone knows what happens next. Automated follow-ups, task tracking, and full transparency for you.</p>
+        <ul class="tick-list">
+          <li>Custom workflows built around your business</li>
+          <li>Task tracking & accountability</li>
+          <li>Structured team communication</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS ────────────────────────────── -->
+<section id="how-it-works" class="section">
+  <div class="wrap">
+    <div class="sh centered reveal">
+      <div class="sh-label">Our Process</div>
+      <h2 class="sh-title">Up and running in <em>days, not weeks.</em></h2>
+      <p class="sh-intro">A thoughtful onboarding that makes us a true extension of your team — without disrupting what's already working.</p>
+    </div>
+    <div class="how-track">
+      <div class="how-step reveal">
+        <div class="how-num">1</div>
+        <h4>Discovery Call</h4>
+        <p>We learn your business — call volume, priorities, booking rules, and how you talk to clients.</p>
+      </div>
+      <div class="how-step reveal">
+        <div class="how-num">2</div>
+        <h4>Build Your Playbook</h4>
+        <p>We document your workflow rules, connect your CRM, and define exactly what triggers what.</p>
+      </div>
+      <div class="how-step reveal">
+        <div class="how-num">3</div>
+        <h4>Go Live</h4>
+        <p>Our team starts handling calls and scheduling while syncing with yours in real time.</p>
+      </div>
+      <div class="how-step reveal">
+        <div class="how-num">4</div>
+        <h4>Optimize Together</h4>
+        <p>We refine workflows as your business evolves — full visibility and control, always.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING ─────────────────────────────────── -->
+<section id="pricing" class="section section-linen">
+  <div class="wrap">
+    <div class="sh reveal">
+      <div class="sh-label">Pricing</div>
+      <h2 class="sh-title">Simple, transparent, <em>tailored to you.</em></h2>
+      <p class="sh-intro">No confusing tiers or hidden fees. A flat weekly rate for dedicated support, customized to fit how your business actually runs.</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="prc reveal">
+        <div class="sh-label-sm">Option One</div>
+        <h3>Flat Weekly Pricing</h3>
+        <p>A simple, predictable weekly rate — no surprises, no setup fees, no fine print.</p>
+        <ul class="tick-list">
+          <li>Transparent weekly rates</li>
+          <li>No hidden fees</li>
+          <li>Cancel or adjust anytime</li>
+        </ul>
+      </div>
+      <div class="prc featured reveal">
+        <div class="badge-featured">Most Popular</div>
+        <h3>Dedicated Weekly Coverage</h3>
+        <p>40 hours of focused support each week — consistent, reliable, and enough for most growing businesses.</p>
+        <ul class="tick-list">
+          <li>Monday–Thursday, 9 AM – 6 PM</li>
+          <li>Friday, 9 AM – 1 PM</li>
+          <li>Reliable week-to-week coverage</li>
+        </ul>
+      </div>
+      <div class="prc reveal">
+        <div class="sh-label-sm">Option Three</div>
+        <h3>Fully Custom Plans</h3>
+        <p>Extended hours, multiple reps, or split coverage — we match how your business actually operates.</p>
+        <ul class="tick-list">
+          <li>Custom rep count & hours</li>
+          <li>Specialized coverage windows</li>
+          <li>Multi-department support</li>
+        </ul>
+      </div>
+    </div>
+    <div style="text-align:center; margin-top:44px;" class="reveal">
+      <a href="#contact" class="btn-primary">Talk to Us About Pricing →</a>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS ────────────────────────────── -->
+<section id="testimonials" class="section">
+  <div class="wrap">
+    <div class="sh centered reveal">
+      <div class="sh-label">Testimonials</div>
+      <h2 class="sh-title">Businesses that <em>feel the difference.</em></h2>
+      <p class="sh-intro">From salon owners to operations managers — real people, real results.</p>
+    </div>
+    <div class="testi-grid">
+
+      <div class="testi reveal">
+        <div class="testi-stars">★★★★★</div>
+        <blockquote>"Our calls are handled with professionalism and sensitivity, our appointments flow smoothly, and our staff can focus fully on client care. They brought calm and structure."</blockquote>
+        <div class="testi-author">
+          <div class="testi-name">Leah Rokeach</div>
+          <div class="testi-role">Salon Owner</div>
+        </div>
+      </div>
+
+      <div class="testi reveal">
+        <div class="testi-stars">★★★★★</div>
+        <blockquote>"They learned how our business operates and built clear workflows around it. We feel supported without ever losing visibility or control. A real partner, not just a service."</blockquote>
+        <div class="testi-author">
+          <div class="testi-name">Yaakov Shweid</div>
+          <div class="testi-role">Service Business Owner</div>
+        </div>
+      </div>
+
+      <div class="testi reveal">
+        <div class="testi-stars">★★★★★</div>
+        <blockquote>"Clients immediately noticed the difference. Fewer scheduling issues, better follow-through, and a team that feels far less overwhelmed."</blockquote>
+        <div class="testi-author">
+          <div class="testi-name">Rifka Klein</div>
+          <div class="testi-role">Operations Manager</div>
+        </div>
+      </div>
+
+      <div class="testi reveal">
+        <div class="testi-stars">★★★★★</div>
+        <blockquote>"We have full access to everything, clear communication at all times, and confidence that our customers are treated with respect. It truly feels like our own office."</blockquote>
+        <div class="testi-author">
+          <div class="testi-name">Menachem Green</div>
+          <div class="testi-role">Small Business Owner</div>
+        </div>
+      </div>
+
+      <div class="testi reveal">
+        <div class="testi-stars">★★★★★</div>
+        <blockquote>"The onboarding was thoughtful, the systems are solid, and the impact has been increased efficiency with far less stress. One of our best operational decisions."</blockquote>
+        <div class="testi-author">
+          <div class="testi-name">Chaim Stern</div>
+          <div class="testi-role">Professional Services Firm</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT ──────────────────────────────────── -->
+<section id="about" class="section section-linen">
+  <div class="wrap">
+    <div class="sh reveal">
+      <div class="sh-label">About Us</div>
+      <h2 class="sh-title">We're not a call center.<br><em>We're your operations partner.</em></h2>
+    </div>
+    <div class="about-layout">
+      <div class="about-prose reveal">
+        <p>Frontline Reception was built to help growing businesses bring structure, professionalism, and calm to their daily operations.</p>
+        <p>As businesses grow, the volume of calls, appointments, changes, and customer questions grows with them. When these responsibilities pile onto already-busy in-house teams, things become overwhelming — details get missed, schedules go sideways, and the client experience suffers, even when everyone is working hard.</p>
+        <p><strong>That is where we come in.</strong></p>
+        <p>We take the time to truly understand how your business runs. We learn your policies, your booking rules, your priorities, and the standards you want your customers to experience. From there, we build clear systems that allow our team to act as a seamless extension of yours.</p>
+        <p>We believe professional, courteous communication matters — not just for first impressions, but for long-term trust. Every call is answered calmly and respectfully. Every appointment is scheduled with intention. Every interaction reflects the business you have worked hard to build.</p>
+        <p>And equally important: <strong>you never feel disconnected from your own operations.</strong> You maintain full visibility into calls, schedules, tasks, and communication at all times. Our role is to support and strengthen your business — not to take control away from you.</p>
+      </div>
+      <div class="about-aside reveal">
+        <div class="principles-box">
+          <div class="principles-top">
+            <h3>Our Principles</h3>
+            <p>The 3 R's that guide everything we do</p>
+          </div>
+          <div class="principles-body">
+            <div class="p-row">
+              <div class="p-icon">🤝</div>
+              <div>
+                <strong>Responsible</strong>
+                <span>We take ownership of every task and follow through, every single time.</span>
+              </div>
+            </div>
+            <div class="p-row">
+              <div class="p-icon">💼</div>
+              <div>
+                <strong>Respectful</strong>
+                <span>Every client interaction is handled with genuine professionalism and warmth.</span>
+              </div>
+            </div>
+            <div class="p-row">
+              <div class="p-icon">💡</div>
+              <div>
+                <strong>Resourceful</strong>
+                <span>We find solutions and assist thoroughly — no hand-holding required.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="bilingual-note" style="margin-top:18px;">
+          <span>🗣️</span>
+          <span>Bilingual support available in <strong>English and Yiddish</strong> — ensuring clear, comfortable communication with every client.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT ─────────────────────────────────── -->
+<section id="contact" class="section">
+  <div class="wrap">
+    <div class="contact-layout">
+      <div class="contact-sidebar reveal">
+        <div class="sh-label">Contact Us</div>
+        <h3>Let's talk about what your business needs.</h3>
+        <p>Tell us about your call volume, scheduling challenges, or CRM setup — and we'll put together a plan tailored to your operation. No pressure, no obligations.</p>
+        <div class="contact-item">
+          <div class="cicon">📞</div>
+          <div><a href="tel:+17183074611">(718) 307-4611</a></div>
+        </div>
+        <div class="contact-item">
+          <div class="cicon">✉️</div>
+          <div><a href="mailto:info@frontlinereception.com">info@frontlinereception.com</a></div>
+        </div>
+      </div>
+
+      <form class="form reveal" method="POST" action="https://formsubmit.co/thefrontlinereception@gmail.com">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_subject" value="New inquiry from FrontlineReception website">
+        <div class="form-row">
+          <div class="fg">
+            <label for="name">Your Name</label>
+            <input id="name" name="name" placeholder="Full name" required>
+          </div>
+          <div class="fg">
+            <label for="company">Company</label>
+            <input id="company" name="company" placeholder="Company name">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="fg">
+            <label for="email">Email Address</label>
+            <input id="email" type="email" name="email" placeholder="you@company.com" required>
+          </div>
+          <div class="fg">
+            <label for="phone">Phone Number</label>
+            <input id="phone" name="phone" placeholder="+1 (___) ___-____">
+          </div>
+        </div>
+        <div class="fg">
+          <label for="msg">How can we help?</label>
+          <textarea id="msg" name="message" rows="5" placeholder="Tell us about your call volume, scheduling needs, CRM setup, or anything else we should know." required></textarea>
+        </div>
+        <button class="btn-primary" type="submit" style="align-self:flex-start;">Send Message →</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER ─────────────────────────────────── -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="assets/img/logo.png" alt="Frontline Reception">
+        <p>Professional customer service, scheduling, and workflow automation for growing businesses. Your operations, handled with care.</p>
+      </div>
+      <div>
+        <h5>Quick Links</h5>
+        <nav class="footer-links">
+          <a href="#services">Services</a>
+          <a href="#how-it-works">How It Works</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#testimonials">Testimonials</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+      <div>
+        <h5>Get In Touch</h5>
+        <div class="footer-contact-list">
+          <a href="tel:+17183074611">(718) 307-4611</a>
+          <a href="mailto:info@frontlinereception.com">info@frontlinereception.com</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© Frontline Reception — All rights reserved.</span>
+      <span>Responsible · Respectful · Resourceful</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Header shadow
+  const hdr = document.getElementById('hdr');
+  window.addEventListener('scroll', () => {
+    hdr.classList.toggle('scrolled', window.scrollY > 8);
+  }, { passive: true });
+
+  // Mobile nav
+  function toggleNav() {
+    document.getElementById('nav').classList.toggle('open');
+  }
+  document.addEventListener('click', e => {
+    if (e.target.matches('#nav a')) document.getElementById('nav').classList.remove('open');
+  });
+
+  // Active link + scroll reveal
+  document.addEventListener('DOMContentLoaded', () => {
+    const links = [...document.querySelectorAll('#nav a[href^="#"]')];
+    const map = new Map(links.map(a => [a.getAttribute('href'), a]));
+    const navObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        const l = map.get('#' + e.target.id);
+        if (l && e.isIntersecting) {
+          links.forEach(x => x.classList.remove('active'));
+          l.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-80px 0px -60% 0px', threshold: 0.01 });
+    document.querySelectorAll('section[id]').forEach(s => navObs.observe(s));
+
+    // staggered reveal
+    const revObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('in'); revObs.unobserve(e.target); }
+      });
+    }, { threshold: 0.07, rootMargin: '0px 0px -32px 0px' });
+    document.querySelectorAll('.reveal').forEach((el, i) => {
+      el.style.transitionDelay = (i % 5) * 90 + 'ms';
+      revObs.observe(el);
+    });
+  });
+</script>
+
+</body>
+</html>
